@@ -2,6 +2,15 @@
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Cache of project
+.gradletasknamecache
+
+# Log file
+*.log
+
 ### STS ###
 .apt_generated
 .classpath
