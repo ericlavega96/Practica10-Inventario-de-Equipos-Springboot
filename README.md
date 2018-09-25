@@ -1,1 +1,1 @@
-# Practica10-Inventario-de-Equipo-Springboot
+# Practica10-Inventario-de-Equipos-Springboot
