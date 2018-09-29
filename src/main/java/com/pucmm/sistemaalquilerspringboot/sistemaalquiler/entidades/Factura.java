@@ -10,7 +10,7 @@ import java.util.List;
 public class Factura implements Serializable {
     @Id
     @GeneratedValue
-    private long idFactura;
+    private Long idFactura;
 
     @NotNull
     @Temporal(TemporalType.DATE)
@@ -36,11 +36,11 @@ public class Factura implements Serializable {
         this.softDelete = softDelete;
     }
 
-    public long getIdFactura() {
+    public Long getIdFactura() {
         return idFactura;
     }
 
-    public void setIdFactura(long idFactura) {
+    public void setIdFactura(Long idFactura) {
         this.idFactura = idFactura;
     }
 

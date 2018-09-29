@@ -11,7 +11,7 @@ import java.util.List;
 public class Cliente implements Serializable {
     @Id
     @GeneratedValue
-    private long idCliente;
+    private Long idCliente;
 
     @NotNull
     private String cedula;
@@ -38,11 +38,11 @@ public class Cliente implements Serializable {
         this.alquileres = new ArrayList<>();
     }
 
-    public long getIdCliente() {
+    public Long getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(long idCliente) {
+    public void setIdCliente(Long idCliente) {
         this.idCliente = idCliente;
     }
 

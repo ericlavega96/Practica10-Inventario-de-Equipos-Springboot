@@ -10,7 +10,7 @@ import java.util.List;
 public class Equipo implements Serializable {
     @Id
     @GeneratedValue
-    private long idEquipo;
+    private Long idEquipo;
 
     @NotNull
     private String nombre;
@@ -42,11 +42,11 @@ public class Equipo implements Serializable {
         this.softDelete = softDelete;
     }
 
-    public long getIdEquipo() {
+    public Long getIdEquipo() {
         return idEquipo;
     }
 
-    public void setIdEquipo(long idEquipo) {
+    public void setIdEquipo(Long idEquipo) {
         this.idEquipo = idEquipo;
     }
 

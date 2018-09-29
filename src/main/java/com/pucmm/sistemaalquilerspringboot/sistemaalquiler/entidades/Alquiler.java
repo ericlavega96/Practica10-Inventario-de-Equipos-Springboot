@@ -12,7 +12,7 @@ import java.util.List;
 public class Alquiler implements Serializable {
     @Id
     @GeneratedValue
-    private long idAlquiler;
+    private Long idAlquiler;
 
     @ManyToOne
     @JoinColumn(name = "idEquipo")
@@ -48,11 +48,11 @@ public class Alquiler implements Serializable {
         this.softDelete = softDelete;
     }
 
-    public long getIdAlquiler() {
+    public Long getIdAlquiler() {
         return idAlquiler;
     }
 
-    public void setIdAlquiler(long idAlquiler) {
+    public void setIdAlquiler(Long idAlquiler) {
         this.idAlquiler = idAlquiler;
     }
 

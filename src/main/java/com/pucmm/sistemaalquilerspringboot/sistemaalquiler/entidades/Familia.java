@@ -9,7 +9,7 @@ import java.util.List;
 public class Familia implements Serializable {
     @Id
     @GeneratedValue
-    private long idFamilia;
+    private Long idFamilia;
 
     private String nombre;
 
@@ -28,11 +28,11 @@ public class Familia implements Serializable {
         this.softDelete = softDelete;
     }
 
-    public long getIdFamilia() {
+    public Long getIdFamilia() {
         return idFamilia;
     }
 
-    public void setIdFamilia(long idFamilia) {
+    public void setIdFamilia(Long idFamilia) {
         this.idFamilia = idFamilia;
     }
 

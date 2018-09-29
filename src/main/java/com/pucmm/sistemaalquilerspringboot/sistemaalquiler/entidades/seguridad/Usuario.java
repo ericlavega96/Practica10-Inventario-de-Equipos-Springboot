@@ -8,8 +8,8 @@ import java.util.List;
 @Entity
 public class Usuario implements Serializable {
     @Id
-    private long username;
-
+    private String username;
+    private String password;
     private String nombre;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -20,19 +20,28 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(long username, String nombre, List<Rol> roles, Date softDelete) {
+    public Usuario(String username, String password, String nombre, List<Rol> roles, Date softDelete) {
         this.username = username;
+        this.password = password;
         this.nombre = nombre;
         this.roles = roles;
         this.softDelete = softDelete;
     }
 
-    public long getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(long username) {
+    public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNombre() {

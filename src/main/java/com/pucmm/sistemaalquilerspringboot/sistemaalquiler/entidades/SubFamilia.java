@@ -8,7 +8,7 @@ import java.util.Date;
 public class SubFamilia implements Serializable {
     @Id
     @GeneratedValue
-    private long idSubFamilia;
+    private Long idSubFamilia;
 
     private String nombre;
 
@@ -28,11 +28,11 @@ public class SubFamilia implements Serializable {
         this.softDelete = softDelete;
     }
 
-    public long getIdSubFamilia() {
+    public Long getIdSubFamilia() {
         return idSubFamilia;
     }
 
-    public void setIdSubFamilia(long idSubFamilia) {
+    public void setIdSubFamilia(Long idSubFamilia) {
         this.idSubFamilia = idSubFamilia;
     }
 
