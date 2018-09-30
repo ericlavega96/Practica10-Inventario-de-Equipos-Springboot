@@ -16,7 +16,7 @@ public class Alquiler implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "idEquipo")
-    private List<Equipo> equipo;
+    private Equipo equipo;
 
     @NotNull
     @Temporal(TemporalType.DATE)
@@ -39,7 +39,7 @@ public class Alquiler implements Serializable {
     public Alquiler() {
     }
 
-    public Alquiler(List<Equipo> equipo, Date fechaAlquiler, Date fechaPromesaEntrega, Factura factura, double costoDiario, Date softDelete) {
+    public Alquiler(Equipo equipo, Date fechaAlquiler, Date fechaPromesaEntrega, Factura factura, double costoDiario, Date softDelete) {
         this.equipo = equipo;
         this.fechaAlquiler = fechaAlquiler;
         this.fechaPromesaEntrega = fechaPromesaEntrega;
@@ -56,11 +56,11 @@ public class Alquiler implements Serializable {
         this.idAlquiler = idAlquiler;
     }
 
-    public List<Equipo> getEquipo() {
+    public Equipo getEquipo() {
         return equipo;
     }
 
-    public void setEquipo(List<Equipo> equipo) {
+    public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
     }
 
