@@ -2,8 +2,7 @@ package com.pucmm.sistemaalquilerspringboot.sistemaalquiler.entidades.seguridad;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class Usuario implements Serializable {
@@ -13,18 +12,17 @@ public class Usuario implements Serializable {
     private String nombre;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Rol> roles;
+    private Set<Rol> roles = new HashSet<>();
 
     private Date softDelete;
 
     public Usuario() {
     }
 
-    public Usuario(String username, String password, String nombre, List<Rol> roles, Date softDelete) {
+    public Usuario(String username, String password, String nombre, Date softDelete) {
         this.username = username;
         this.password = password;
         this.nombre = nombre;
-        this.roles = roles;
         this.softDelete = softDelete;
     }
 
@@ -52,11 +50,11 @@ public class Usuario implements Serializable {
         this.nombre = nombre;
     }
 
-    public List<Rol> getRoles() {
+    public Set<Rol> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Rol> roles) {
+    public void setRoles(Set<Rol> roles) {
         this.roles = roles;
     }
 
@@ -69,9 +67,13 @@ public class Usuario implements Serializable {
     }
 
     public boolean isDeleted(){
-        if(softDelete.after(new Date()))
-            return true;
+        boolean borrado = false;
+        if (softDelete == null)
+            borrado = false;
+        else if(softDelete.after(new Date()))
+            borrado = true;
         else
-            return false;
+            borrado = false;
+        return borrado;
     }
 }

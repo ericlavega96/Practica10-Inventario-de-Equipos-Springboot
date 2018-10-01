@@ -4,5 +4,8 @@ import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.entidades.seguridad.U
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RepositorioUsuario extends JpaRepository<Usuario,String> {
+
     Usuario findByUsernameAndPassword(String username, String password);
+
+    Usuario findByUsername(String username);
 }

@@ -4,4 +4,5 @@ import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.entidades.seguridad.R
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RepositorioRol  extends JpaRepository<Rol,String> {
+
 }
