@@ -50,9 +50,9 @@ public class ServiciosFamilia {
                 auxEsp = Arrays.asList(listEsp.get(i).split(":")[1].split(","));
                 auxEng = Arrays.asList(listEng.get(i).split(":")[1].split(","));
                 for(int j = 0; j < auxEsp.size();j++)
-                    Aux.add(new SubFamilia(auxEsp.get(j).trim(),auxEng.get(j).trim(),null));
+                    Aux.add(new SubFamilia(auxEsp.get(j).trim(),auxEng.get(j).trim()));
                 repositorioFamilia.save(new Familia(listEsp.get(i).split(":")[0].trim(),
-                        listEng.get(i).split(":")[0].trim(),Aux,null));
+                        listEng.get(i).split(":")[0].trim(),Aux));
 
             }
 

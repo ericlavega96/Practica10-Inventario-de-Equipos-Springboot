@@ -24,10 +24,9 @@ public class SubFamilia implements Serializable {
     public SubFamilia() {
     }
 
-    public SubFamilia(String nombre, String ingles, Date softDelete) {
+    public SubFamilia(String nombre, String ingles) {
         this.nombre = nombre;
         this.ingles = ingles;
-        this.softDelete = softDelete;
     }
 
     public Long getIdSubFamilia() {

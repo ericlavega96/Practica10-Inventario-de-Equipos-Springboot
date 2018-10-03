@@ -19,11 +19,10 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(String username, String password, String nombre, Date softDelete) {
+    public Usuario(String username, String password, String nombre) {
         this.username = username;
         this.password = password;
         this.nombre = nombre;
-        this.softDelete = softDelete;
     }
 
     public String getUsername() {

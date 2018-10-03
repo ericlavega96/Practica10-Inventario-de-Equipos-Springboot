@@ -29,11 +29,10 @@ public class Factura implements Serializable {
     public Factura() {
     }
 
-    public Factura(@NotNull Date fechaEntregaEquipo, Cliente cliente, List<Alquiler> alquileres, Date softDelete) {
+    public Factura(Date fechaEntregaEquipo, Cliente cliente, List<Alquiler> alquileres) {
         this.fechaEntregaEquipo = fechaEntregaEquipo;
         this.cliente = cliente;
         this.alquileres = alquileres;
-        this.softDelete = softDelete;
     }
 
     public Long getIdFactura() {

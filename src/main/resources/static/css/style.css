@@ -3402,12 +3402,9 @@ ul.chat-available-user li a:hover {
 /* Contact Form */
 
 #contact {
-  padding: 40px 0;
+  padding: 16px 0;
 }
 
-.contact-form {
-
-}
 
 .contact-form label {
    color: #999;

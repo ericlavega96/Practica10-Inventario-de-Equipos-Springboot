@@ -24,11 +24,10 @@ public class Familia implements Serializable {
     public Familia() {
     }
 
-    public Familia(String nombre,String ingles, List<SubFamilia> subfamilias, Date softDelete) {
+    public Familia(String nombre,String ingles, List<SubFamilia> subfamilias) {
         this.nombre = nombre;
         this.ingles = ingles;
         this.subfamilias = subfamilias;
-        this.softDelete = softDelete;
     }
 
     public Long getIdFamilia() {

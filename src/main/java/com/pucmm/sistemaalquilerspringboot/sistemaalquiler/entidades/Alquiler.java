@@ -39,13 +39,12 @@ public class Alquiler implements Serializable {
     public Alquiler() {
     }
 
-    public Alquiler(Equipo equipo, Date fechaAlquiler, Date fechaPromesaEntrega, Factura factura, double costoDiario, Date softDelete) {
+    public Alquiler(Equipo equipo, Date fechaAlquiler, Date fechaPromesaEntrega, Factura factura, double costoDiario) {
         this.equipo = equipo;
         this.fechaAlquiler = fechaAlquiler;
         this.fechaPromesaEntrega = fechaPromesaEntrega;
         this.factura = factura;
         this.costoDiario = costoDiario;
-        this.softDelete = softDelete;
     }
 
     public Long getIdAlquiler() {

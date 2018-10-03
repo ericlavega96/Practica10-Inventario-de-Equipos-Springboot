@@ -33,13 +33,12 @@ public class Equipo implements Serializable {
     public Equipo() {
     }
 
-    public Equipo(@NotNull String nombre, @NotNull int inventario, List<Alquiler> alquileres, SubFamilia subfamilia, String rutaImagen, Date softDelete) {
+    public Equipo(String nombre, int inventario, List<Alquiler> alquileres, SubFamilia subfamilia, String rutaImagen) {
         this.nombre = nombre;
         this.inventario = inventario;
         this.alquileres = alquileres;
         this.subfamilia = subfamilia;
         this.rutaImagen = rutaImagen;
-        this.softDelete = softDelete;
     }
 
     public Long getIdEquipo() {
