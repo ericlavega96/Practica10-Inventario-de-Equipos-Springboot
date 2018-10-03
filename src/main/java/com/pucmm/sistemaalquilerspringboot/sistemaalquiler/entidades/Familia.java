@@ -13,6 +13,8 @@ public class Familia implements Serializable {
 
     private String nombre;
 
+    private String ingles;
+
     @OneToMany(mappedBy = "familia",fetch = FetchType.EAGER, cascade = CascadeType.ALL,orphanRemoval = true)
     private List<SubFamilia> subfamilias;
 
@@ -22,8 +24,9 @@ public class Familia implements Serializable {
     public Familia() {
     }
 
-    public Familia(String nombre, List<SubFamilia> subfamilias, Date softDelete) {
+    public Familia(String nombre,String ingles, List<SubFamilia> subfamilias, Date softDelete) {
         this.nombre = nombre;
+        this.ingles = ingles;
         this.subfamilias = subfamilias;
         this.softDelete = softDelete;
     }
@@ -42,6 +45,14 @@ public class Familia implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getIngles() {
+        return ingles;
+    }
+
+    public void setIngles(String ingles) {
+        this.ingles = ingles;
     }
 
     public List<SubFamilia> getSubfamilias() {

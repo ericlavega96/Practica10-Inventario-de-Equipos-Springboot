@@ -12,6 +12,8 @@ public class SubFamilia implements Serializable {
 
     private String nombre;
 
+    private String ingles;
+
     @ManyToOne
     @JoinColumn(name = "idFamilia")
     private Familia familia;
@@ -22,9 +24,9 @@ public class SubFamilia implements Serializable {
     public SubFamilia() {
     }
 
-    public SubFamilia(String nombre, Familia familia, Date softDelete) {
+    public SubFamilia(String nombre, String ingles, Date softDelete) {
         this.nombre = nombre;
-        this.familia = familia;
+        this.ingles = ingles;
         this.softDelete = softDelete;
     }
 
@@ -42,6 +44,14 @@ public class SubFamilia implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getIngles() {
+        return ingles;
+    }
+
+    public void setIngles(String ingles) {
+        this.ingles = ingles;
     }
 
     public Familia getFamilia() {

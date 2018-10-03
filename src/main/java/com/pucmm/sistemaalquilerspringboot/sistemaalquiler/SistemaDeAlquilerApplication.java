@@ -1,5 +1,6 @@
 package com.pucmm.sistemaalquilerspringboot.sistemaalquiler;
 
+import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.servicios.serviciosEntidades.ServiciosFamilia;
 import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.servicios.serviciosEntidades.seguridad.ServiciosUsuario;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,5 +14,7 @@ public class SistemaDeAlquilerApplication {
 
         ServiciosUsuario serviciosUsuario = (ServiciosUsuario) applicationContext.getBean("serviciosUsuario");
         serviciosUsuario.crearUsuarioAdmin();
+        ServiciosFamilia serviciosFamilia = (ServiciosFamilia) applicationContext.getBean("serviciosFamilia");
+        serviciosFamilia.generarFamilias();
 	}
 }
