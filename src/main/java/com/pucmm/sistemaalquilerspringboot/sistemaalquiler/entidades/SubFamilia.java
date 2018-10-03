@@ -24,9 +24,10 @@ public class SubFamilia implements Serializable {
     public SubFamilia() {
     }
 
-    public SubFamilia(String nombre, String ingles) {
+    public SubFamilia(String nombre, String ingles, Familia familia) {
         this.nombre = nombre;
         this.ingles = ingles;
+        this.familia = familia;
     }
 
     public Long getIdSubFamilia() {

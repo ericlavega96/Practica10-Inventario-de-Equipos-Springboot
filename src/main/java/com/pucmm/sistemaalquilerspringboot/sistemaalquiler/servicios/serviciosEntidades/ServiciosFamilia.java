@@ -49,10 +49,13 @@ public class ServiciosFamilia {
                 Aux = new ArrayList<>();
                 auxEsp = Arrays.asList(listEsp.get(i).split(":")[1].split(","));
                 auxEng = Arrays.asList(listEng.get(i).split(":")[1].split(","));
+                Familia auxFamilia = new Familia();
                 for(int j = 0; j < auxEsp.size();j++)
-                    Aux.add(new SubFamilia(auxEsp.get(j).trim(),auxEng.get(j).trim()));
-                repositorioFamilia.save(new Familia(listEsp.get(i).split(":")[0].trim(),
-                        listEng.get(i).split(":")[0].trim(),Aux));
+                    Aux.add(new SubFamilia(auxEsp.get(j).trim(),auxEng.get(j).trim(),auxFamilia));
+                auxFamilia.setNombre(listEsp.get(i).split(":")[0].trim());
+                auxFamilia.setIngles(listEng.get(i).split(":")[0].trim());
+                auxFamilia.setSubfamilias(Aux);
+                repositorioFamilia.save(auxFamilia);
 
             }
 
