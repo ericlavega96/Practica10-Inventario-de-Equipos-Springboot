@@ -28,6 +28,7 @@ public class ClientesController {
     @RequestMapping(value = "/clientes",method = RequestMethod.GET)
     public String getClientesView(Model model){
         model.addAttribute("paises",serviciosPais.getPaises());
+        model.addAttribute("clientes",repositorioCliente.findAll());
         return "clientes";
     }
 
@@ -39,7 +40,6 @@ public class ClientesController {
         repositorioCliente.save(cliente);
         System.out.println("El cliente ha sido almacenado con éxito");
         System.out.println(cliente.toString());
-        model.addAttribute("paises",serviciosPais.getPaises());
-        return "clientes";
+        return "redirect:/clientes";
     }
 }
