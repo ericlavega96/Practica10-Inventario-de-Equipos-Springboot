@@ -73,7 +73,7 @@ public class ClientesController {
     @RequestMapping(value = "/eliminarCliente/{id}",method = RequestMethod.POST)
     public String eliminarCliente(@PathVariable(value = "id") String id) {
         Cliente clienteSoftDelete = repositorioCliente.getOne(Long.valueOf(id));
-        clienteSoftDelete.setSoftDelete(new Date());
+        clienteSoftDelete.setBorrado(true);
         repositorioCliente.save(clienteSoftDelete);
         System.out.println("El cliente ha sido eliminado con éxito");
         System.out.println(clienteSoftDelete.toString());

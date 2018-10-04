@@ -50,7 +50,20 @@ public class AlquilerController {
 
     @RequestMapping(value = "/alquiler/tablaFactura/{idFactura}",method = RequestMethod.GET)
     public String getFacturaTable(@PathVariable long idFactura, Model model){
+        System.out.println("    Id de la Factura: "+idFactura);
         model.addAttribute("factura",repositorioFactura.findById(idFactura));
         return "tablaFactura";
+    }
+
+    @RequestMapping(value = "/alquiler/listasFacturas",method = RequestMethod.GET)
+    public String getFacturaListas(Model model){
+        model.addAttribute("facturas",repositorioFactura.findAll());
+        return "blank";
+    }
+
+    @RequestMapping(value = "/alquiler/equiposRentados",method = RequestMethod.GET)
+    public String getEquiposAlquilados(Model model){
+        model.addAttribute("facturas",repositorioFactura.findAll());
+        return "blank";
     }
 }

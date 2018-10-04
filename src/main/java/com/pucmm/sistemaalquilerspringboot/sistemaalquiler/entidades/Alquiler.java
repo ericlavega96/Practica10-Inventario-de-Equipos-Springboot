@@ -33,8 +33,7 @@ public class Alquiler implements Serializable {
     @NotNull
     private double costoDiario;
 
-    @Temporal(TemporalType.DATE)
-    private Date softDelete;
+    private boolean borrado = false;
 
     public Alquiler() {
     }
@@ -95,20 +94,11 @@ public class Alquiler implements Serializable {
         this.costoDiario = costoDiario;
     }
 
-    public Date getSoftDelete() {
-        return softDelete;
+    public boolean isBorrado() {
+        return borrado;
     }
 
-    public void setSoftDelete(Date softDelete) {
-        this.softDelete = softDelete;
+    public void setBorrado(boolean borrado) {
+        this.borrado = borrado;
     }
-
-    public boolean isDeleted(){
-        if(softDelete.after(new Date()))
-            return true;
-        else
-            return false;
-    }
-
-    //nota: Validar existencia.
 }

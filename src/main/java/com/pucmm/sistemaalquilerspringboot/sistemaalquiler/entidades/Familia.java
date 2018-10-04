@@ -1,11 +1,14 @@
 package com.pucmm.sistemaalquilerspringboot.sistemaalquiler.entidades;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-@Entity
+@Entity()
 public class Familia implements Serializable {
     @Id
     @GeneratedValue
@@ -18,8 +21,7 @@ public class Familia implements Serializable {
     @OneToMany(mappedBy = "familia",fetch = FetchType.EAGER, cascade = CascadeType.ALL,orphanRemoval = true)
     private List<SubFamilia> subfamilias;
 
-    @Temporal(TemporalType.DATE)
-    private Date softDelete;
+    private boolean borrado = false;
 
     public Familia() {
     }
@@ -62,18 +64,11 @@ public class Familia implements Serializable {
         this.subfamilias = subfamilias;
     }
 
-    public Date getSoftDelete() {
-        return softDelete;
+    public boolean isBorrado() {
+        return borrado;
     }
 
-    public void setSoftDelete(Date softDelete) {
-        this.softDelete = softDelete;
-    }
-
-    public boolean isDeleted(){
-        if(softDelete.after(new Date()))
-            return true;
-        else
-            return false;
+    public void setBorrado(boolean borrado) {
+        this.borrado = borrado;
     }
 }

@@ -23,8 +23,7 @@ public class Factura implements Serializable {
     @OneToMany(mappedBy = "factura",fetch = FetchType.EAGER, cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Alquiler> alquileres;
 
-    @Temporal(TemporalType.DATE)
-    private Date softDelete;
+    private boolean borrado = false;
 
     public Factura() {
     }
@@ -67,18 +66,11 @@ public class Factura implements Serializable {
         this.alquileres = alquileres;
     }
 
-    public Date getSoftDelete() {
-        return softDelete;
+    public boolean isBorrado() {
+        return borrado;
     }
 
-    public void setSoftDelete(Date softDelete) {
-        this.softDelete = softDelete;
-    }
-
-    public boolean isDeleted(){
-        if(softDelete.after(new Date()))
-            return true;
-        else
-            return false;
+    public void setBorrado(boolean borrado) {
+        this.borrado = borrado;
     }
 }

@@ -27,8 +27,7 @@ public class Equipo implements Serializable {
 
     private String rutaImagen;
 
-    @Temporal(TemporalType.DATE)
-    private Date softDelete;
+    private boolean borrado = false;
 
     public Equipo() {
     }
@@ -89,18 +88,11 @@ public class Equipo implements Serializable {
         this.rutaImagen = rutaImagen;
     }
 
-    public Date getSoftDelete() {
-        return softDelete;
+    public boolean isBorrado() {
+        return borrado;
     }
 
-    public void setSoftDelete(Date softDelete) {
-        this.softDelete = softDelete;
-    }
-
-    public boolean isDeleted(){
-        if(softDelete.after(new Date()))
-            return true;
-        else
-            return false;
+    public void setBorrado(boolean borrado) {
+        this.borrado = borrado;
     }
 }

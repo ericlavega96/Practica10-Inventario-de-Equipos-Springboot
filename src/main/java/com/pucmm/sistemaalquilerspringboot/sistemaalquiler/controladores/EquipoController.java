@@ -30,7 +30,6 @@ public class EquipoController {
     @RequestMapping(value = "/equipos/registrar", method = RequestMethod.GET)
     public String getRegistrarView(Model model)  throws IOException {
         model.addAttribute("listaFamilias", serviciosFamilia.findAll());
-        model.addAttribute("hola","holamundo");
         System.out.println("Entró a registrar equipos");
         for(Familia f:serviciosFamilia.findAll()) {
             System.out.println("Nombre: " + f.getNombre() + " Inglés:" + f.getNombre() + " Subfamilias:");
@@ -50,6 +49,13 @@ public class EquipoController {
         System.out.println("El equipo ha sido almacenado con éxito");
         System.out.println(equipo.toString());
         model.addAttribute("listaFamilias", serviciosFamilia.findAll());
-        return "/equipos/registrar";
+        return "redirect:/equipos/catalogo";
+    }
+
+    @RequestMapping(value = "/equipos/catalogo", method = RequestMethod.GET)
+    public String getTableView(Model model)  throws IOException {
+        model.addAttribute("listaEquipos", repositorioEquipo.findAll());
+        System.out.println("Entró a ver equipos");
+        return "blank";
     }
 }
