@@ -26,6 +26,7 @@ gradle-app.setting
 *.iml
 *.ipr
 /out/
+/images/
 
 ### NetBeans ###
 /nbproject/private/

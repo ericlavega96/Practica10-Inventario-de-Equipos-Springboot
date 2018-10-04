@@ -45,5 +45,10 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter{
                 .logout()
                 .logoutSuccessUrl("/login")
                 .permitAll();
+
+        //deshabilitando las seguridad contra los frame internos.
+        //Necesario para H2.
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
     }
 }

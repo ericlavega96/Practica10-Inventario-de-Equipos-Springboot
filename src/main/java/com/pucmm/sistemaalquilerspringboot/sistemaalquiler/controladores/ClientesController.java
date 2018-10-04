@@ -2,19 +2,18 @@ package com.pucmm.sistemaalquilerspringboot.sistemaalquiler.controladores;
 
 import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.entidades.Cliente;
 import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.repositorios.RepositorioCliente;
+import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.servicios.GestorImagenesServicio;
 import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.servicios.serviciosEntidades.ServiciosPais;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
+import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 public class ClientesController {
@@ -24,6 +23,9 @@ public class ClientesController {
     @Autowired
     RepositorioCliente repositorioCliente;
 
+    @Autowired
+    GestorImagenesServicio gestorImagenesServicio;
+
     @RequestMapping(value = "/clientes",method = RequestMethod.GET)
     public String getClientesView(Model model){
         model.addAttribute("paises",serviciosPais.getPaises());
@@ -32,9 +34,15 @@ public class ClientesController {
     }
 
     @RequestMapping(value = "/registrarCliente",method = RequestMethod.POST)
-    public String registrarCliente(@Valid Cliente cliente, BindingResult result) {
+    public String registrarCliente(@Valid Cliente cliente, BindingResult result, @RequestParam("file")MultipartFile file) {
         if (result.hasErrors()) {
             return "error";
+        }
+        try {
+            if(file != null)
+                cliente.setFoto(gestorImagenesServicio.guardarFoto(file));
+        } catch (IOException e) {
+            System.out.println("Error al almacenar la imagen" + e.toString());
         }
         repositorioCliente.save(cliente);
         System.out.println("El cliente ha sido almacenado con éxito");
@@ -43,9 +51,15 @@ public class ClientesController {
     }
 
     @RequestMapping(value = "/editarCliente/{id}",method = RequestMethod.POST)
-    public String editarCliente(@Valid Cliente cliente, BindingResult result,@PathVariable(value = "id") String id) {
+    public String editarCliente(@Valid Cliente cliente, BindingResult result,@RequestParam("file")MultipartFile file,@PathVariable(value = "id") String id) {
         if (result.hasErrors()) {
             return "error";
+        }
+        try {
+            if(file != null)
+                cliente.setFoto(gestorImagenesServicio.guardarFoto(file));
+        } catch (IOException e) {
+            System.out.println("Error al almacenar la imagen" + e.toString());
         }
 
         cliente.setIdCliente(Long.valueOf(id));
@@ -58,7 +72,6 @@ public class ClientesController {
 
     @RequestMapping(value = "/eliminarCliente/{id}",method = RequestMethod.POST)
     public String eliminarCliente(@PathVariable(value = "id") String id) {
-
         Cliente clienteSoftDelete = repositorioCliente.getOne(Long.valueOf(id));
         clienteSoftDelete.setSoftDelete(new Date());
         repositorioCliente.save(clienteSoftDelete);
