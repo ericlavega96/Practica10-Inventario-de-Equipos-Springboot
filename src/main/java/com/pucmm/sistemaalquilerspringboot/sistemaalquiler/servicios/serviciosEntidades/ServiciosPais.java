@@ -16,5 +16,9 @@ public class ServiciosPais {
         return repositorioPais.findAll();
     }
 
+    public Pais findPais(Long  id){
+        return repositorioPais.getOne(id);
+    }
+
 
 }

@@ -1,5 +1,7 @@
 package com.pucmm.sistemaalquilerspringboot.sistemaalquiler.entidades;
 
+import org.hibernate.annotations.SQLDelete;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
