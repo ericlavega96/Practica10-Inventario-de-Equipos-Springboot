@@ -44,6 +44,34 @@ public class ServiciosUsuario implements UserDetailsService {
         repositorioUsuario.save(admin);
     }
 
+    public void crearUsuarioAdmin(String username,String nombre,String password){
+        Rol rolAdmin = new Rol("ROLE_ADMIN");
+        repositorioRol.save(rolAdmin);
+
+        Usuario admin = new Usuario();
+        admin.setUsername(username);
+        admin.setPassword(bCryptPasswordEncoder.encode(password));
+        admin.setNombre(nombre);
+        admin.getRoles().add(new Rol("ROLE_ADMIN"));
+        repositorioUsuario.save(admin);
+    }
+
+    public void crearUsuario(String username,String nombre,String password){
+        Rol rolAdmin = new Rol("ROLE_ADMIN");
+        repositorioRol.save(rolAdmin);
+
+        Usuario user = new Usuario();
+        user.setUsername(username);
+        user.setPassword(bCryptPasswordEncoder.encode(password));
+        user.setNombre(nombre);
+        user.getRoles().add(new Rol("ROLE_USER"));
+        repositorioUsuario.save(user);
+    }
+
+    public String encryptPassword(String rawPassword){
+        return bCryptPasswordEncoder.encode(rawPassword);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Usuario usuario = repositorioUsuario.findByUsername(username);

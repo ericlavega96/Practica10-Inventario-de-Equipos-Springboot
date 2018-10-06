@@ -1,5 +1,6 @@
 package com.pucmm.sistemaalquilerspringboot.sistemaalquiler.config;
 
+import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.servicios.serviciosEntidades.seguridad.ServiciosUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter{
     //Modo configuracion JPA
     @Autowired
-    private UserDetailsService userDetailsService;
+    private ServiciosUsuario serviciosUsuario;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -23,7 +24,7 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter{
 
         //Configuración JPA.
         auth
-                .userDetailsService(userDetailsService)
+                .userDetailsService(serviciosUsuario)
                 .passwordEncoder(bCryptPasswordEncoder);
     }
 
@@ -51,4 +52,6 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter{
         http.csrf().disable();
         http.headers().frameOptions().disable();
     }
+
+
 }

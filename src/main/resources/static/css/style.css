@@ -111,9 +111,10 @@ a, a:hover, a:focus {
 }
 
 .btn-theme02 {
-  color: #fff;
-  background-color: #ac92ec;
-  border-color: #967adc;
+    color: #fff;
+    background-color: #ac92ec;
+    border-color: #967adc;
+    margin-left: 13px;
 }
 .btn-theme02:hover,
 .btn-theme02:focus,

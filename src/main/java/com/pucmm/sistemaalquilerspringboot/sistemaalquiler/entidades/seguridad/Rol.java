@@ -7,20 +7,20 @@ import java.io.Serializable;
 @Entity
 public class Rol implements Serializable {
     @Id
-    private String Rol;
+    private String rol;
 
     public Rol() {
     }
 
     public Rol(String rol) {
-        Rol = rol;
+        this.rol = rol;
     }
 
     public String getRol() {
-        return Rol;
+        return rol;
     }
 
     public void setRol(String rol) {
-        Rol = rol;
+        this.rol = rol;
     }
 }

@@ -75,4 +75,14 @@ public class Usuario implements Serializable {
             borrado = false;
         return borrado;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", roles=" + roles.toString() +
+                '}';
+    }
 }
