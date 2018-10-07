@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title> Log In Sistema de Alquiler </title>
+  <title th:text="#{login.title}"></title>
 
   <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
@@ -45,19 +45,18 @@
                         ALQUILER
                     </span>
                   </b>
-                  <b>
-                      &emsp;Log In
+                  <b th:text="#{login.app}">
                   </b>
               </a>
           </h2>
           <div class="login-wrap">
-          <input type="text" name="username" class="form-control" placeholder="Nombre de Usuario" autofocus>
+          <input type="text" name="username" class="form-control" th:placeholder="#{login.username}" autofocus>
           <br>
-          <input type="password" name="password" class="form-control" placeholder="Contraseña">
+          <input type="password" name="password" class="form-control" th:placeholder="#{login.password}">
           <label class="checkbox">
-            <input type="checkbox" name="remember-me"> Recordarme
+            <input th:text="#{login.recordarme}" type="checkbox" name="remember-me">
           </label>
-          <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> Iniciar Sesión </button>
+          <button th:text="#{button.login}" class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i></button>
           <hr>
         </div>
       </form>

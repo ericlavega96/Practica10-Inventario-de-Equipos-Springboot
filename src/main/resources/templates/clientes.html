@@ -7,7 +7,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Dashio - Bootstrap Admin Template</title>
+    <title th:text="#{clientes.title}"></title>
 
     <!-- Favicons -->
     <link href="../img/favicon.png" rel="icon">
@@ -82,7 +82,7 @@
         <!--logo end-->
         <div class="top-menu">
             <ul class="nav pull-right top-menu">
-                <li><a class="logout" href="/login"> Cerrar Sesión </a></li>
+                <li><a th:text="#{logout}" class="logout" href="/login"></a></li>
             </ul>
         </div>
     </header>
@@ -96,48 +96,48 @@
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
                 <p class="centered"><a href="/index"><img src="../img/user-icon.png" class="img-circle" width="80"></a></p>
-                <h5 th:text="${username}" class="centered">Sam Soffes</h5>
+                <h5 th:text="${username}" class="centered"></h5>
                 <li class="mt">
                     <a href="/usuarios">
                         <i class="fa fa-users"></i>
-                        <span> Usuarios </span>
+                        <span th:text="#{menu.usuarios}"></span>
                     </a>
                 </li>
                 <li>
                     <a href="/clientes">
                         <i class="fa fa-handshake-o"></i>
-                        <span> Clientes </span>
+                        <span th:text="#{menu.clientes}"></span>
                     </a>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-desktop"></i>
-                        <span> Equipos </span>
+                        <span th:text="#{menu.equipos}"></span>
                     </a>
                     <ul class="sub">
-                        <li><a href="/equipos/registrar"> Agregar </a></li>
-                        <li><a href="/equipos/catalogo"> Catálogo </a></li>
+                        <li><a th:text="#{menu.equipos.agregar}" href="/equipos/registrar"></a></li>
+                        <li><a th:text="#{menu.equipos.catalogo}" href="/equipos/catalogo"></a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-percent"></i>
-                        <span> Alquileres </span>
+                        <span th:text="#{menu.alquileres}"> Alquileres </span>
                     </a>
                     <ul class="sub">
-                        <li><a href="/alquiler/registrar"> Crear Factura </a></li>
-                        <li><a href="/alquiler/listasFacturas"> Lista de Facturas </a></li>
-                        <li><a href="/alquiler/equiposRentados"> Equipos en Alquiler</a></li>
+                        <li><a th:text="#{menu.alquileres.crear-factura}" href="/alquiler/registrar"></a></li>
+                        <li><a th:text="#{menu.alquileres.lista-facturas}" href="/alquiler/listasFacturas"> Lista de Facturas </a></li>
+                        <li><a th:text="#{menu.alquileres.equipos-alquiler}" href="/alquiler/equiposRentados"> Equipos en Alquiler</a></li>
                     </ul>
                 </li>
 
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class=" fa fa-bar-chart-o"></i>
-                        <span>Gráficos</span>
+                        <span th:text="#{menu.graficos}"></span>
                     </a>
                     <ul class="sub">
-                        <li><a href="morris.html">Promedios por Familia</a></li>
+                        <li><a th:text="#{menu.graficos.promedios-familia}" href="morris.html"></a></li>
                         <li><a href="chartjs.html">Promedios por Familia</a></li>
                     </ul>
                 </li>
@@ -159,10 +159,10 @@
                         <div class="panel-heading">
                             <ul class="nav nav-tabs nav-justified">
                                 <li class="active">
-                                    <a data-toggle="tab" href="#edit"> Agregar Cliente</a>
+                                    <a th:text="#{clientes.agregar}" data-toggle="tab" href="#edit"></a>
                                 </li>
                                 <li>
-                                    <a data-toggle="tab" href="#contact" class="contact-map"> Ver Clientes </a>
+                                    <a th:text="#{clientes.ver}" data-toggle="tab" href="#contact" class="contact-map"></a>
                                 </li>
                             </ul>
                         </div>
@@ -174,17 +174,17 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="content-panel">
-                                                <h4><i class="fa fa-angle-right"></i> Clientes </h4>
+                                                <h4><i th:text="#{menu.clientes}" class="fa fa-angle-right"></i></h4>
                                                 <table class="table table-striped table-advance table-hover">
                                                     <thead>
                                                     <tr>
                                                         <th><i class="fa fa-key"></i> ID </th>
-                                                        <th><i class="fa fa-user"></i> Cédula </th>
-                                                        <th> Nombres </th>
-                                                        <th> Apellidos </th>
-                                                        <th><i class=" fa fa-flag"></i> País/Ciudad </th>
-                                                        <th><i class=" fa fa-building-o"></i> Calle </th>
-                                                        <th><i class=" fa fa-building-o"></i> Teléfono </th>
+                                                        <th th:text="#{cliente.cedula}" ><i class="fa fa-user"></i></th>
+                                                        <th th:text="#{cliente.nombres}"></th>
+                                                        <th th:text="#{cliente.apellidos}"></th>
+                                                        <th th:text="#{cliente.pais-ciudad}"><i class=" fa fa-flag"></i></th>
+                                                        <th th:text="#{cliente.direccion}"><i class=" fa fa-building-o"></i></th>
+                                                        <th th:text="#{cliente.telefono}"><i class=" fa fa-phone"></i></th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -200,8 +200,8 @@
                                                             <td th:text="${cliente.direccion}"></td>
                                                             <td th:text="${cliente.telefono}"></td>
                                                             <td>
-                                                                <a class="foto label label-info label-mini" href="thumb">
-                                                                    Ver Foto
+                                                                <a class="foto label label-info label-mini">
+                                                                    <label th:text="#{cliente.ver-foto}"></label>
                                                                     <span>
                                                                         <img th:src="@{'images/' + ${cliente.foto}}" />
                                                                     </span>
@@ -225,38 +225,38 @@
                                 <div id="edit" class="tab-pane active">
                                     <div class="row">
                                         <div class="col-lg-8 col-lg-offset-2 detailed">
-                                            <h4 class="mb"> Información Personal </h4>
+                                            <h4 th:text="#{clientes.inf-pers}" class="mb"></h4>
                                             <form role="form" action="/registrarCliente" th:object="${cliente}" class="form-horizontal" method="post" enctype="multipart/form-data">
                                                 <input th:if="${_csrf} != null" type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 control-label"> Foto </label>
+                                                    <label th:text="#{cliente.foto}" class="col-lg-2 control-label"></label>
                                                     <div class="col-lg-6">
                                                         <input type="file" id="file" name="file" class="file-pos" accept="image/*">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 control-label"> Cédula </label>
+                                                    <label  th:text="#{cliente.cedula}" class="col-lg-2 control-label"></label>
                                                     <div class="col-lg-6">
                                                         <input type="text" placeholder=" " id="cedula" name="cedula" class="form-control" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 control-label"> Nombres </label>
+                                                    <label th:text="#{cliente.nombres}" class="col-lg-2 control-label"></label>
                                                     <div class="col-lg-6">
                                                         <input type="text" placeholder=" " name="nombres" class="form-control" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 control-label"> Apellidos </label>
+                                                    <label th:text="#{cliente.apellidos}" class="col-lg-2 control-label"> Apellidos </label>
                                                     <div class="col-lg-6">
                                                         <input type="text" placeholder=" " name="apellidos" class="form-control" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 control-label"> País </label>
+                                                    <label th:text="#{cliente.pais}" class="col-lg-2 control-label"> País </label>
                                                     <div class="col-lg-6">
                                                         <select name="pais" th:class="form-control" required>
-                                                            <option> Seleccione un país... </option>
+                                                            <option th:text="#{cliente.select.pais}"></option>
                                                             <option th:each="pais:${paises}"
                                                                     th:value="${pais.id}"
                                                                     th:text="${pais.nombre}">
@@ -265,27 +265,27 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 control-label"> Ciudad </label>
+                                                    <label th:text="#{cliente.ciudad}" class="col-lg-2 control-label"></label>
                                                     <div class="col-lg-6">
                                                         <input type="text" placeholder=" " name="ciudad" class="form-control" required>
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <h4 class="mb"> Información de Contacto </h4>
+                                                <h4 th:text="#{clientes.inf-contacto}" class="mb"></h4>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 control-label"> Dirección </label>
+                                                    <label th:text="#{cliente.direccion}" class="col-lg-2 control-label"></label>
                                                     <div class="col-lg-6">
                                                         <input type="text" placeholder=" " name="direccion" class="form-control" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 control-label"> Teléfono </label>
+                                                    <label th:text="#{cliente.telefono}" class="col-lg-2 control-label"></label>
                                                     <div class="col-lg-6">
                                                         <input type="text" placeholder=" " id="telefono" name="telefono" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 control-label"> Correo </label>
+                                                    <label th:text="#{cliente.correo}" class="col-lg-2 control-label"></label>
                                                     <div class="col-lg-6">
                                                         <input type="text" placeholder=" " id="correo" name="correo" class="form-control">
                                                     </div>
@@ -293,8 +293,8 @@
                                                 <br>
                                                 <div class="form-group">
                                                     <div class="col-lg-offset-2 col-lg-10">
-                                                        <button class="btn btn-theme" type="submit"> Guardar </button>
-                                                        <button class="btn btn-theme04" type="button"> Cancelar </button>
+                                                        <button th:text="#{button.guardar}" class="btn btn-theme" type="submit"></button>
+                                                        <button th:text="#{button.cancelar}" class="btn btn-theme04" type="button"> Cancelar </button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -326,43 +326,43 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="myModalLabel"> Editar Cliente </h4>
+                    <h4 th:text="#{cliente.editar}" class="modal-title" id="myModalLabel"></h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-10 col-lg-offset-2 detailed">
-                            <h4 class="mb"> Información Personal </h4>
+                            <h4 th:text="#{clientes.inf-pers}" class="mb"></h4>
                             <form role="form" th:action="@{/editarCliente/{id}(id=${cliente.idCliente})}" th:object="${cliente}" class="form-horizontal" method="post" enctype="multipart/form-data">
                                 <input th:if="${_csrf} != null" type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label"> Foto </label>
+                                    <label th:text="#{cliente.foto}" class="col-lg-2 control-label"></label>
                                     <div class="col-lg-6">
                                         <input type="file" id="file-edit" name="file" class="file-pos" accept="image/*">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label"> Cédula </label>
+                                    <label th:text="#{cliente.cedula}" class="col-lg-2 control-label"></label>
                                     <div class="col-lg-6">
                                         <input type="text" placeholder=" " th:id="'cedula-edit-' + ${cliente.idCliente}" name="cedula" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label"> Nombres </label>
+                                    <label th:text="#{cliente.nombres}" class="col-lg-2 control-label"></label>
                                     <div class="col-lg-6">
                                         <input th:value="${cliente.nombres}" type="text" placeholder=" " name="nombres" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label"> Apellidos </label>
+                                    <label th:text="#{cliente.apellidos}" class="col-lg-2 control-label"></label>
                                     <div class="col-lg-6">
                                         <input th:value="${cliente.apellidos}" type="text" placeholder=" " name="apellidos" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label"> País </label>
+                                    <label th:text="#{cliente.pais}" class="col-lg-2 control-label"></label>
                                     <div class="col-lg-6">
                                         <select name="pais" th:id="'pais-select-' + ${cliente.idCliente}" th:class="form-control" required>
-                                            <option> Seleccione un país... </option>
+                                            <option th:text="#{cliente.select.pais}"></option>
                                             <option th:each="pais:${paises}"
                                                     th:value="${pais.id}"
                                                     th:text="${pais.nombre}">
@@ -371,35 +371,35 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label"> Ciudad </label>
+                                    <label th:text="#{cliente.ciudad}" class="col-lg-2 control-label"></label>
                                     <div class="col-lg-6">
                                         <input th:value="${cliente.ciudad}" type="text" placeholder=" " name="ciudad" class="form-control" required>
                                     </div>
                                 </div>
                                 <br>
-                                <h4 class="mb"> Información de Contacto </h4>
+                                <h4 th:text="#{clientes.inf-contacto}" class="mb"></h4>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label"> Dirección </label>
+                                    <label th:text="#{cliente.direccion}" class="col-lg-2 control-label"></label>
                                     <div class="col-lg-6">
                                         <input th:value="${cliente.direccion}" type="text" placeholder=" " name="direccion" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label"> Teléfono </label>
+                                    <label th:text="#{cliente.telefono}" class="col-lg-2 control-label"></label>
                                     <div class="col-lg-6">
                                         <input type="text" placeholder=" " th:id="'telefono-edit-' + ${cliente.idCliente}" name="telefono" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label"> Correo </label>
+                                    <label th:text="#{cliente.correo}" class="col-lg-2 control-label"></label>
                                     <div class="col-lg-6">
                                         <input type="text" placeholder=" " th:id="'correo-edit-' + ${cliente.idCliente}" name="correo" class="form-control">
                                     </div>
                                 </div>
                                 <br>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal"> Cancelar </button>
-                                    <button type="submit" class="btn btn-primary"> Guardar Cambios </button>
+                                    <button th:text="#{button.cancelar}" type="button" class="btn btn-theme04" data-dismiss="modal"></button>
+                                    <button th:text="#{button.guardar-cambios}" type="submit" class="btn btn-primary"></button>
                                 </div>
                             </form>
                         </div>
@@ -417,7 +417,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title"> Eliminar Cliente </h4>
+                    <h4 th:text="#{cliente.eliminar}" class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -425,12 +425,12 @@
                             <form id="eliminar-cliente-form" role="form" class="form-horizontal" method="post">
                                 <input th:if="${_csrf} != null" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                                 <div class="form-group">
-                                    <h4 id="eliminar-h4" class="col-lg-10 control-label"> ¿Está seguro de eliminar el cliente seleccionado ? </h4>
+                                    <h4 th:text="#{cliente.eliminar-label}" id="eliminar-h4" class="col-lg-10 control-label"></h4>
                                 </div>
                                 <br>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary"> Sí </button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal"> No </button>
+                                    <button th:text="#{cliente.eliminar.opcion.si}" type="submit" class="btn btn-primary"></button>
+                                    <button th:text="#{cliente.eliminar.opcion.no}" type="button" class="btn btn-default" data-dismiss="modal"> No </button>
                                 </div>
                             </form>
                         </div>
@@ -477,6 +477,7 @@
 <script src="../lib/common-scripts.js"></script>
 <!--script for this page-->
 <script>
+    var text = document.getElementById("eliminar-h4").innerHTML;
     function ready(fn) {
         if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
             fn();
@@ -522,7 +523,7 @@
     function eliminarCliente(idCliente) {
         var h4 = document.getElementById("eliminar-h4");
         var form = document.getElementById("eliminar-cliente-form");
-        h4.innerHTML = '¿Está seguro de eliminar el cliente ' + idCliente + ' ?';
+        h4.innerHTML = text + idCliente + ' ?';
         form.action = "/eliminarCliente/" + idCliente;
     }
 
