@@ -20,6 +20,44 @@
     <!-- Custom styles for this template -->
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/style-responsive.css" rel="stylesheet">
+    <style>
+        .foto{
+            position: relative;
+            z-index: 0;
+            text-decoration: none;
+
+        }
+
+        .foto:hover{
+            background-color: transparent;
+            z-index: 50;
+        }
+
+        .foto span{ /*CSS for enlarged image*/
+            position: absolute;
+            background-color: #ffffff;
+            padding: 5px;
+            left: -1000px;
+            border: 1px solid black;
+            visibility: hidden;
+            color: black;
+            text-decoration: none;
+        }
+
+        .foto span img{ /*CSS for enlarged image*/
+            border-width: 0;
+            padding: 2px;
+            width: 50px;
+            height: 50px;
+        }
+
+        .foto:hover span{ /*CSS for enlarged image on hover*/
+            visibility: visible;
+            top: 0;
+            left: 60px; /*position where enlarged image should offset horizontally */
+
+        }
+    </style>
 
     <!-- =======================================================
       Template Name: Dashio
@@ -153,7 +191,7 @@
                                                         <th:block th:each="cliente: ${clientes}">
                                                         <tr>
                                                             <td>
-                                                                <span th:text="${cliente.idCliente}"></span>
+                                                                <span class="badge bg-info" th:text="${cliente.idCliente}"></span>
                                                             </td>
                                                             <td th:text="${cliente.cedula}"></td>
                                                             <td th:text="${cliente.nombres}"></td>
@@ -162,7 +200,15 @@
                                                             <td th:text="${cliente.direccion}"></td>
                                                             <td th:text="${cliente.telefono}"></td>
                                                             <td>
-                                                                <button th:onclick="|editarCliente('${cliente.idCliente}','${cliente.pais.id}')|" class="btn btn-primary btn-xs" data-toggle="modal" th:attr="data-target='#editar-cliente-' + ${cliente.idCliente}"><i class="fa fa-pencil"></i></button>
+                                                                <a class="foto label label-info label-mini" href="thumb">
+                                                                    Ver Foto
+                                                                    <span>
+                                                                        <img th:src="@{'images/' + ${cliente.foto}}" />
+                                                                    </span>
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <button th:onclick="|editarCliente('${cliente.idCliente}','${cliente.pais.id}','${cliente.cedula}','${cliente.telefono}','${cliente.correo}')|" class="btn btn-primary btn-xs" data-toggle="modal" th:attr="data-target='#editar-cliente-' + ${cliente.idCliente}"><i class="fa fa-pencil"></i></button>
                                                                 <button th:onclick="|eliminarCliente('${cliente.idCliente}')|" class="btn btn-danger btn-xs"><i class="fa fa-trash-o " data-toggle="modal" data-target="#eliminar-cliente"></i></button>
                                                             </td>
                                                         </tr>
@@ -286,7 +332,7 @@
                     <div class="row">
                         <div class="col-lg-10 col-lg-offset-2 detailed">
                             <h4 class="mb"> Información Personal </h4>
-                            <form role="form" id="editar-cliente-form" th:action="@{/editarCliente/{id}(id=${cliente.idCliente})}" th:object="${cliente}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                            <form role="form" th:action="@{/editarCliente/{id}(id=${cliente.idCliente})}" th:object="${cliente}" class="form-horizontal" method="post" enctype="multipart/form-data">
                                 <input th:if="${_csrf} != null" type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label"> Foto </label>
@@ -297,7 +343,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label"> Cédula </label>
                                     <div class="col-lg-6">
-                                        <input th:value="${cliente.cedula}" type="text" placeholder=" " id="cedula-edit" name="cedula" class="form-control" onchange="actualizarValores(this)" required>
+                                        <input type="text" placeholder=" " th:id="'cedula-edit-' + ${cliente.idCliente}" name="cedula" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -341,13 +387,13 @@
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label"> Teléfono </label>
                                     <div class="col-lg-6">
-                                        <input th:value="${cliente.telefono}" type="text" placeholder=" " id="telefono-edit" name="telefono" onchange="actualizarValores(this)" class="form-control">
+                                        <input type="text" placeholder=" " th:id="'telefono-edit-' + ${cliente.idCliente}" name="telefono" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label"> Correo </label>
                                     <div class="col-lg-6">
-                                        <input th:value="${cliente.correo}" type="text" placeholder=" " id="correo-edit" name="correo" onchange="actualizarValores(this)" class="form-control">
+                                        <input type="text" placeholder=" " th:id="'correo-edit-' + ${cliente.idCliente}" name="correo" class="form-control">
                                     </div>
                                 </div>
                                 <br>
@@ -439,8 +485,38 @@
         }
     }
 
-    function editarCliente(idCliente,valor) {
-        document.getElementById("pais-select-" + idCliente).value = valor;
+    function editarCliente(idCliente,valor,cedula,telefono,correo) {
+
+        ready(function () {
+            document.getElementById("pais-select-" + idCliente).value = valor;
+
+            console.log("Cedula: " + cedula);
+            console.log("Telefono: " + telefono);
+            console.log("Correo: " + correo);
+
+            var phoneMask = new IMask(
+                document.getElementById('telefono-edit-' + idCliente), {
+                    mask: '{+}0(000)000-0000',
+                    lazy: false,
+                    placeholderChar: ' '
+                });
+            phoneMask.value = telefono;
+
+            var emailMask = new IMask(
+                document.getElementById('correo-edit-' + idCliente), {
+                    mask: /^\S*@?\S*$/
+                });
+            emailMask.value = correo;
+
+            var cedulaMask = new IMask(
+                document.getElementById('cedula-edit-' + idCliente), {
+                    mask: '000{-}0000000-0',
+                    lazy: false,
+                    placeholderChar: ' '
+                });
+            cedulaMask.value = cedula;
+        });
+
     }
 
     function eliminarCliente(idCliente) {
@@ -448,35 +524,6 @@
         var form = document.getElementById("eliminar-cliente-form");
         h4.innerHTML = '¿Está seguro de eliminar el cliente ' + idCliente + ' ?';
         form.action = "/eliminarCliente/" + idCliente;
-    }
-
-    function actualizarValores(input){
-        var value = input.value;
-        if(input.id == "telefono-edit"){
-            var mask = new IMask(
-                input, {
-                    mask: '{+}0(000)000-0000',
-                    lazy: false,
-                    placeholderChar: ' '
-                });
-            mask.value = value;
-        }else if(input.id == "cedula-edit"){
-            var mask = new IMask(
-                input, {
-                    mask: /^\S*@?\S*$/,
-                    watchDataMask: true
-                });
-            mask.value = value;
-
-
-        }else if(input.id == "correo-edit"){
-            var mask = new IMask(
-                input, {
-                    mask: /^\S*@?\S*$/,
-                    watchDataMask: true
-                });
-            mask.value = value;
-        }
     }
 
     ready(function () {
