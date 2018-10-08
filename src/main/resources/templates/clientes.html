@@ -179,12 +179,12 @@
                                                     <thead>
                                                     <tr>
                                                         <th><i class="fa fa-key"></i> ID </th>
-                                                        <th th:text="#{cliente.cedula}" ><i class="fa fa-user"></i></th>
+                                                        <th><i class="fa fa-user"></i><span th:text="' ' + #{cliente.cedula}" /></th>
                                                         <th th:text="#{cliente.nombres}"></th>
                                                         <th th:text="#{cliente.apellidos}"></th>
-                                                        <th th:text="#{cliente.pais-ciudad}"><i class=" fa fa-flag"></i></th>
-                                                        <th th:text="#{cliente.direccion}"><i class=" fa fa-building-o"></i></th>
-                                                        <th th:text="#{cliente.telefono}"><i class=" fa fa-phone"></i></th>
+                                                        <th><i class="fa fa-flag"></i><span th:text="' ' + #{cliente.pais-ciudad}" /></th>
+                                                        <th><i class="fa fa-building-o"></i><span th:text="' ' + #{cliente.direccion}"/></th>
+                                                        <th><i class="fa fa-phone"></i><span th:text="' ' + #{cliente.telefono}"/></th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>

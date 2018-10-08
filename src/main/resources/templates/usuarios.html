@@ -140,9 +140,9 @@
                                                 <table class="table table-striped table-advance table-hover">
                                                     <thead>
                                                     <tr>
-                                                        <th th:text="#{usuario.username}"><i class="fa fa-key"></i></th>
+                                                        <th><i class="fa fa-key"></i><span th:text="' ' + #{usuario.username}"/></th>
                                                         <th th:text="#{usuario.nombre}"></th>
-                                                        <th th:text="#{usuario.roles}"><i class=" fa fa-flag"></i></th>
+                                                        <th><i class="fa fa-tasks"></i><span th:text="' ' + #{usuario.roles}"/></th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -198,12 +198,12 @@
                                                     <label th:text="#{usuario.rol}" class="col-lg-2 control-label"></label>
                                                     <div class="col-lg-6">
                                                         <div class="radio">
-                                                            <label th:text="#{usuario.rol.admin}">
+                                                            <label>
                                                                 <input th:text="#{usuario.rol.admin}" type="radio" name="rol" id="roladmin" value="admin">
                                                             </label>
                                                         </div>
                                                         <div class="radio">
-                                                            <label th:text="#{usuario.rol.usuario}">
+                                                            <label>
                                                                 <input th:text="#{usuario.rol.usuario}" type="radio" name="rol" id="roluser" value="user">
                                                             </label>
                                                         </div>
