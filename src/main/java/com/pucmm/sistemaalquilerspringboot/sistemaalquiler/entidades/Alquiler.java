@@ -124,4 +124,9 @@ public class Alquiler implements Serializable {
         return fechaPromesaEntrega.toString();
     }
 
+    public double diasDeAlquiler(){
+        double diferencia = fechaPromesaEntrega.getTime() - fechaAlquiler.getTime();
+        return (diferencia / (1000*60*60*24));
+    }
+
 }
