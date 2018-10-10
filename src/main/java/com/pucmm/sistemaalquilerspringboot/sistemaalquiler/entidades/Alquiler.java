@@ -18,11 +18,9 @@ public class Alquiler implements Serializable {
     @JoinColumn(name = "idEquipo")
     private Equipo equipo;
 
-    @NotNull
     @Temporal(TemporalType.DATE)
     private Date fechaAlquiler;
 
-    @NotNull
     @Temporal(TemporalType.DATE)
     private Date fechaPromesaEntrega;
 
