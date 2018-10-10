@@ -5030,6 +5030,16 @@ a.thumbnail.active {
   border: 1px solid transparent;
   border-radius: 4px;
 }
+.alert-login {
+  padding: 13px;
+  margin-bottom: 6px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-align: center;
+  width: 97%;
+  margin-left: 9px;
+  margin-top: 5px;
+}
 .alert h4 {
   margin-top: 0;
   color: inherit;

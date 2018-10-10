@@ -49,12 +49,15 @@
                   </b>
               </a>
           </h2>
+          <br>
+          <div th:if="${error}" class="alert alert-login alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b> Error: </b> <span th:text="${error}"></span></div>
+          <div th:if="${logout}" class="alert alert-login alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Cerrar Sesión:</b><span th:text="${logout}"></span></div>
           <div class="login-wrap">
           <input type="text" name="username" class="form-control" th:placeholder="#{login.username}" autofocus>
           <br>
           <input type="password" name="password" class="form-control" th:placeholder="#{login.password}">
           <label class="checkbox">
-            <input th:text="#{login.recordarme}" type="checkbox" name="remember-me">
+            <input id="remember" th:text="#{login.recordarme}" type="checkbox" name="remember-me">
           </label>
           <button th:text="#{button.login}" class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i></button>
           <hr>

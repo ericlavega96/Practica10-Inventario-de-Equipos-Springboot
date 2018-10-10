@@ -43,17 +43,23 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter{
                 .formLogin()
                 .loginPage("/login") //indicando la ruta que estaremos utilizando.
                 .defaultSuccessUrl("/index")
-                .failureUrl("/login") //en caso de fallar puedo indicar otra pagina.
+                .failureUrl("/login?error") //en caso de fallar puedo indicar otra pagina.
                 .permitAll()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/login")
-                .permitAll();
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessUrl("/login?logout")
+                .permitAll()
+                .and()
+                .rememberMe().key("sisalerad").tokenValiditySeconds(86400); //Activando opcion de recordar sesion
+
+
 
         //deshabilitando las seguridad contra los frame internos.
         //Necesario para H2.
         http.csrf().disable();
         http.headers().frameOptions().disable();
+
     }
 
     @Configuration
