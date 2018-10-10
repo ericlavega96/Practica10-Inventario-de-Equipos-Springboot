@@ -76,7 +76,7 @@
         <div id="sidebar" class="nav-collapse ">
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
-                <p class="centered"><a href="profile.html"><img src="../img/user-icon.png" class="img-circle" width="80"></a></p>
+                <p class="centered"><a href="profile.html"><img src="/../img/user-icon.png" class="img-circle" width="80"></a></p>
                 <h5 th:text="${username}" class="centered">Sam Soffes</h5>
                 <li class="mt">
                     <a href="index.html">
@@ -170,9 +170,16 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-3"> Costo por Día </label>
+                                <label class="control-label col-md-3"> Costo Unitario por Día </label>
                                 <div class="col-sm-10 text-limit">
-                                    <input type="text" class="form-control" name="costoDiario" id="costoDiario" required>
+                                    <input type="text" class="form-control" name="costoDiarioUnitario" id="costoDiarioUnitario" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3"> Cantidad Alquilada </label>
+                                <div class="col-sm-10 text-limit">
+                                    <input type="text" class="form-control" name="cantidad" id="cantidad" required>
                                 </div>
                             </div>
 
@@ -215,22 +222,22 @@
     <!--footer end-->
 </section>
 <!-- js placed at the end of the document so the pages load faster -->
-<script src="../lib/jquery/jquery.min.js"></script>
-<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
-<script src="../lib/jquery-ui-1.9.2.custom.min.js"></script>
-<script src="../lib/jquery.ui.touch-punch.min.js"></script>
-<script class="include" type="text/javascript" src="../lib/jquery.dcjqaccordion.2.7.js"></script>
-<script src="../lib/jquery.scrollTo.min.js"></script>
-<script src="../lib/jquery.nicescroll.js" type="text/javascript"></script>
+<script src="/../lib/jquery/jquery.min.js"></script>
+<script src="/../lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="/../lib/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="/../lib/jquery.ui.touch-punch.min.js"></script>
+<script class="include" type="text/javascript" src="/../lib/jquery.dcjqaccordion.2.7.js"></script>
+<script src="/../lib/jquery.scrollTo.min.js"></script>
+<script src="/../lib/jquery.nicescroll.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <!--common script for all pages-->
-<script src="../lib/common-scripts.js"></script>
-<script type="text/javascript" src="../lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="../lib/bootstrap-daterangepicker/date.js"></script>
-<script type="text/javascript" src="../lib/bootstrap-daterangepicker/daterangepicker.js"></script>
-<script type="text/javascript" src="../lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
-<script type="text/javascript" src="../lib/bootstrap-daterangepicker/moment.min.js"></script>
-<script src="../lib/advanced-form-components.js"></script>
+<script src="/../lib/common-scripts.js"></script>
+<script type="text/javascript" src="/../lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="/../lib/bootstrap-daterangepicker/date.js"></script>
+<script type="text/javascript" src="/../lib/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="/../lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="/../lib/bootstrap-daterangepicker/moment.min.js"></script>
+<script src="/../lib/advanced-form-components.js"></script>
 <!--script for this page-->
 <script>
     $(document).ready(function() {

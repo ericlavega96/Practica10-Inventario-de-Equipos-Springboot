@@ -29,19 +29,23 @@ public class Alquiler implements Serializable {
     private Factura factura;
 
     @NotNull
-    private double costoDiario;
+    private double costoDiarioUnitario;
+
+    @NotNull
+    private long cantidad;
 
     private boolean borrado = false;
 
     public Alquiler() {
     }
 
-    public Alquiler(Equipo equipo, Date fechaAlquiler, Date fechaPromesaEntrega, Factura factura, double costoDiario) {
+    public Alquiler(Equipo equipo, Date fechaAlquiler, Date fechaPromesaEntrega, Factura factura, @NotNull double costoDiarioUnitario, @NotNull long cantidad) {
         this.equipo = equipo;
         this.fechaAlquiler = fechaAlquiler;
         this.fechaPromesaEntrega = fechaPromesaEntrega;
         this.factura = factura;
-        this.costoDiario = costoDiario;
+        this.costoDiarioUnitario = costoDiarioUnitario;
+        this.cantidad = cantidad;
     }
 
     public Long getIdAlquiler() {
@@ -84,12 +88,20 @@ public class Alquiler implements Serializable {
         this.factura = factura;
     }
 
-    public double getCostoDiario() {
-        return costoDiario;
+    public double getCostoDiarioUnitario() {
+        return costoDiarioUnitario;
     }
 
-    public void setCostoDiario(double costoDiario) {
-        this.costoDiario = costoDiario;
+    public void setCostoDiarioUnitario(double costoDiarioUnitario) {
+        this.costoDiarioUnitario = costoDiarioUnitario;
+    }
+
+    public long getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(long cantidad) {
+        this.cantidad = cantidad;
     }
 
     public boolean isBorrado() {

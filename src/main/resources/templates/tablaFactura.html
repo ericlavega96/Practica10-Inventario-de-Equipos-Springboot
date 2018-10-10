@@ -188,7 +188,9 @@
                                             <th><i class="fa fa-user"></i><span th:text="Equipo" /></th>
                                             <th> Fecha de Alquiler </th>
                                             <th> Fecha de Entrega </th>
-                                            <th> Costo Diario por Alquiler </th>
+                                            <th> Costo Diario Unitario por Alquiler </th>
+                                            <th> Cantidad Alquilada</th>
+
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -200,12 +202,13 @@
                                                 <td th:text="${alquiler.equipoString()}"></td>
                                                 <td th:text="${alquiler.fechaAlquilerString()}"></td>
                                                 <td th:text="${alquiler.fechaEntregaString()}"></td>
-                                                <td th:text="${alquiler.costoDiario}"></td>
+                                                <td th:text="${alquiler.costoDiarioUnitario}"></td>
+                                                <td th:text="${alquiler.cantidad}"></td>
                                                 <td>
                                                     <a class="foto label label-info label-mini">
-                                                        <label th:text="Ver Foto"></label>
+                                                        <label th:text="'Ver Foto'"></label>
                                                         <span>
-                                                            <img th:src="@{'images/' + ${alquiler.equipo.rutaImagen}}" />
+                                                            <img th:src="@{'/images/' + ${alquiler.equipo.rutaImagen}}" />
                                                         </span>
                                                     </a>
                                                 </td>
