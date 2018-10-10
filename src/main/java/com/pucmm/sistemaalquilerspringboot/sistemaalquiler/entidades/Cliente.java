@@ -173,4 +173,8 @@ public class Cliente implements Serializable {
                 ", alquileres=" + alquileres +
                 '}';
     }
+
+    public String nombreCompleto(){
+        return nombres+" "+apellidos;
+    }
 }

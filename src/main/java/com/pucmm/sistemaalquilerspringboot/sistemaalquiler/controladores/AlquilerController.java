@@ -30,10 +30,10 @@ public class AlquilerController {
 
     @RequestMapping(value = "/alquiler/registrar",method = RequestMethod.GET)
     public String getFacturaView(Model model){
-        System.out.println("Entre a alquiler");
+        System.out.println("Entro a alquiler");
         for(Cliente cliente:repositorioCliente.findAll())
             System.out.println("Nombre: " + cliente.getNombres() +" "+ cliente.getApellidos());
-        model.addAttribute("clientes",repositorioCliente.findAll());
+        model.addAttribute("listaClientes",repositorioCliente.findAll());
         return "registrarFacturacion";
     }
 
@@ -51,7 +51,10 @@ public class AlquilerController {
     @RequestMapping(value = "/alquiler/tablaFactura/{idFactura}",method = RequestMethod.GET)
     public String getFacturaTable(@PathVariable long idFactura, Model model){
         System.out.println("    Id de la Factura: "+idFactura);
-        model.addAttribute("factura",repositorioFactura.findById(idFactura));
+        Object aux = repositorioFactura.findById(idFactura);
+        Factura factura = (Factura)aux;
+        model.addAttribute("factura",factura);
+        model.addAttribute("alquileres", factura.getAlquileres());
         return "tablaFactura";
     }
 

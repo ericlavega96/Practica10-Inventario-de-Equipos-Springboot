@@ -147,10 +147,11 @@
                                 <div class="col-sm-10 tab-div">
                                     <select name="subfamilia" class="js-example-basic-single form-control" required>
                                         <option>Seleccione al cliente a facturar...</option>
-                                        <option th:each="cliente:${clientes}"
-                                                th:value="${cliente.idCliente}"
-                                                th:text="${cliente.nombres} ${cliente.apellidos}">
-                                        </option>
+                                        <th:block th:each="cliente:${listaClientes}">
+                                            <option th:value="${cliente.idCliente}"
+                                                    th:text="${cliente.nombreCompleto()}">
+                                            </option>
+                                        </th:block>
                                     </select>
                                 </div>
                             </div>

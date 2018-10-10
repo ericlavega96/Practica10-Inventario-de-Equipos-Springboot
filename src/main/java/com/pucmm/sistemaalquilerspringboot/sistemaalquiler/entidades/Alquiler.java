@@ -101,4 +101,17 @@ public class Alquiler implements Serializable {
     public void setBorrado(boolean borrado) {
         this.borrado = borrado;
     }
+
+    public String equipoString(){
+        return equipo.getIdEquipo()+" - "+equipo.getNombre();
+    }
+
+    public String fechaAlquilerString(){
+        return fechaAlquiler.toString();
+    }
+
+    public String fechaEntregaString(){
+        return fechaPromesaEntrega.toString();
+    }
+
 }

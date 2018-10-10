@@ -73,4 +73,12 @@ public class Factura implements Serializable {
     public void setBorrado(boolean borrado) {
         this.borrado = borrado;
     }
+
+    public String clienteCompleto(){
+        return cliente.getIdCliente() + " - " + cliente.getNombres() + " " + cliente.getApellidos();
+    }
+
+    public String fechaString(){
+        return fechaEntregaEquipo.toString();
+    }
 }
