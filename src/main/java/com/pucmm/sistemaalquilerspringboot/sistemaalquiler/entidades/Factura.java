@@ -12,7 +12,6 @@ public class Factura implements Serializable {
     @GeneratedValue
     private Long idFactura;
 
-    @NotNull
     @Temporal(TemporalType.DATE)
     private Date fechaEntregaEquipo;
 

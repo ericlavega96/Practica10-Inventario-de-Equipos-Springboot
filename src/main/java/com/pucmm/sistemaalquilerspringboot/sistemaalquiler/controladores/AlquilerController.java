@@ -13,9 +13,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 public class AlquilerController {
@@ -39,11 +43,18 @@ public class AlquilerController {
     }
 
     @RequestMapping(value = "/registrarFactura",method = RequestMethod.POST)
-    public String registrarFactura(@Valid Factura factura, BindingResult result) throws IOException {
+    public String registrarFactura(@Valid Factura factura, @RequestParam("fecha") String fecha, BindingResult result) throws IOException {
         if (result.hasErrors()) {
             return "error";
         }
-        System.out.println("Factura: "+factura.toString());
+        try {
+            Date fechaEntrega = (new SimpleDateFormat("dd-mm-yyyy").parse(fecha));
+            factura.setFechaEntregaEquipo(fechaEntrega);
+        } catch (ParseException e) {
+            System.out.println("Error al almacenar la fecha");
+            factura.setFechaEntregaEquipo(new Date());
+        }
+
         repositorioFactura.save(factura);
         System.out.println("La factura se ha guardado con éxito");
         return "redirect:/alquiler/tablaFactura/"+factura.getIdFactura();
@@ -52,8 +63,7 @@ public class AlquilerController {
     @RequestMapping(value = "/alquiler/tablaFactura/{idFactura}",method = RequestMethod.GET)
     public String getFacturaTable(@PathVariable long idFactura, Model model){
         System.out.println("    Id de la Factura: "+idFactura);
-        Object aux = repositorioFactura.findById(idFactura);
-        Factura factura = (Factura)aux;
+        Factura factura = repositorioFactura.getOne(idFactura);
         model.addAttribute("factura",factura);
         model.addAttribute("alquileres", factura.getAlquileres());
         return "tablaFactura";
