@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @Controller
 public class AlquilerController {
@@ -38,14 +39,14 @@ public class AlquilerController {
     }
 
     @RequestMapping(value = "/registrarFactura",method = RequestMethod.POST)
-    public String registrarFactura(@Valid Factura factura, BindingResult result, Model model) {
+    public String registrarFactura(@Valid Factura factura, BindingResult result) throws IOException {
         if (result.hasErrors()) {
             return "error";
         }
+        System.out.println("Factura: "+factura.toString());
         repositorioFactura.save(factura);
-        System.out.println("El cliente ha sido almacenado con éxito");
-        System.out.println(factura.toString());
-        return "redirect:/tablaFactura/"+factura.getIdFactura();
+        System.out.println("La factura se ha guardado con éxito");
+        return "redirect:/alquiler/tablaFactura/"+factura.getIdFactura();
     }
 
     @RequestMapping(value = "/alquiler/tablaFactura/{idFactura}",method = RequestMethod.GET)

@@ -3,7 +3,6 @@ package com.pucmm.sistemaalquilerspringboot.sistemaalquiler.entidades;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -94,5 +93,16 @@ public class Equipo implements Serializable {
 
     public void setBorrado(boolean borrado) {
         this.borrado = borrado;
+    }
+
+    @Override
+    public String toString() {
+        return "Equipo{" +
+                "idEquipo=" + idEquipo +
+                ", nombre='" + nombre + '\'' +
+                ", inventario=" + inventario +
+                ", alquileres=" + alquileres +
+                ", subfamilia=" + subfamilia.getNombre() +'\'' +
+                '}';
     }
 }

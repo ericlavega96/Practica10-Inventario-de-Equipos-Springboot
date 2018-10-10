@@ -165,7 +165,7 @@ public class Cliente implements Serializable {
                 ", cedula='" + cedula + '\'' +
                 ", nombres='" + nombres + '\'' +
                 ", apellidos='" + apellidos + '\'' +
-                ", pais=" + pais +
+                ", pais=" + pais.getNombre() +
                 ", ciudad='" + ciudad + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", telefono='" + telefono + '\'' +

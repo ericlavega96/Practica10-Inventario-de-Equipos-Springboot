@@ -81,4 +81,13 @@ public class Factura implements Serializable {
     public String fechaString(){
         return fechaEntregaEquipo.toString();
     }
+
+    @Override
+    public String toString() {
+        return "Factura{" +
+                "idFactura=" + idFactura +
+                ", fechaEntregaEquipo=" + fechaEntregaEquipo +
+                ", cliente=" + cliente.getNombres() +
+                '}';
+    }
 }

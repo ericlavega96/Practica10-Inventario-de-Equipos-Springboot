@@ -36,14 +36,20 @@
         .form-control{
             width: 40%;
         }
-        .form-group{
-            margin-left: 115px;
-        }
 
         .col-sm-submit {
             margin-right: 156px;
             text-align-last: right;
         }
+
+        .form-horizontal.style-form .form-group{
+            margin-left: 125px;
+        }
+
+        .select2{
+            width: 40%;
+        }
+
     </style>
 </head>
 
@@ -140,25 +146,25 @@
                     <!-- Contenido -->
                     <div class="form-panel">
                         <h4 class="mb"><i class="fa fa-angle-right"></i> Registrar Equipos</h4>
-                        <form action="/registrarCliente" th:object="${equipo}" class="form-horizontal style-form" method="post" enctype="multipart/form-data">
-
+                        <form action="/registrarEquipo" th:object="${equipo}" class="form-horizontal style-form" method="post" enctype="multipart/form-data">
+                            <input th:if="${_csrf} != null" type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                             <div class="form-group">
                                 <label class="col-sm-2 col-sm-2 control-label">Nombre</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="nombre" required>
+                                    <input type="text" class="form-control" name="nombre" id="nombre" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 col-sm-2 control-label">Cantidad en existencia</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="cantidad" required>
+                                    <input type="text" class="form-control" name="inventario" id="inventario" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-2 col-sm-2 control-label">Sub-Familia del equipo</label>
                                 <div class="col-sm-10">
-                                    <select name="subfamilia" class="js-example-basic-single form-control" required>
+                                    <select name="subfamilia" class="js-example-basic-single form-control" id="subfamilia" required>
                                         <option>Seleccione la sub-familia del equipo</option>
                                         <th:block th:each="fam: ${listaFamilias}">
                                             <optgroup th:label="${fam.nombre}">
@@ -185,7 +191,7 @@
                                             <span class="btn btn-theme02 btn-file">
                                                 <span class="fileupload-new"><i class="fa fa-paperclip"></i> Seleccionar Imagen</span>
                                             <span class="fileupload-exists"><i class="fa fa-undo"></i> Cambiar </span>
-                                            <input type="file" class="default" />
+                                            <input type="file" id="file" name="file" class="default" accept="image/*">
                                             </span>
                                             <a href="advanced_form_components.html#" class="btn btn-theme04 fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash-o"></i> Eliminar </a>
                                         </div>

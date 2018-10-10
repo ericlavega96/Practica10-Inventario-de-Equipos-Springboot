@@ -8,7 +8,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Alquiler - Facturación</title>
+    <title></title>
 
     <!-- Favicons -->
     <link href="../img/favicon.png" rel="icon">
@@ -19,13 +19,8 @@
     <!--external css-->
     <link href="../lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" type="text/css" href="../lib/bootstrap-datepicker/css/datepicker.css" />
-    <link rel="stylesheet" type="text/css" href="../lib/bootstrap-daterangepicker/daterangepicker.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/style-responsive.css" rel="stylesheet">
-
-
 
     <!-- =======================================================
       Template Name: Dashio
@@ -34,16 +29,20 @@
       License: https://templatemag.com/license/
     ======================================================= -->
     <style>
-        .js-example-basic-single{
-            width: 32%;
-            margin-left: 105px;
+        .btn-borrar{
+            background-color: red;
+            border-color: white;
         }
-        .col-sm-10 {
-            padding-left: 120px;
+        .img-circle {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            position: relative;
+            top: 10%;
         }
-        .col-sm-submit {
-            margin-right: 156px;
-            text-align-last: right;
+        .icn-container{
+            width: 125px;
+            height: 125px;
         }
     </style>
 </head>
@@ -76,49 +75,49 @@
         <div id="sidebar" class="nav-collapse ">
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
-                <p class="centered"><a href="profile.html"><img src="../img/user-icon.png" class="img-circle" width="80"></a></p>
-                <h5 th:text="${username}" class="centered">Sam Soffes</h5>
+                <p class="centered"><a href="/index"><img src="../img/user-icon.png" class="img-circle" width="80"></a></p>
+                <h5 th:text="${username}" class="centered"></h5>
                 <li class="mt">
-                    <a href="index.html">
+                    <a href="/usuarios">
                         <i class="fa fa-users"></i>
-                        <span> Usuarios </span>
+                        <span th:text="#{menu.usuarios}"></span>
                     </a>
                 </li>
                 <li>
                     <a href="/clientes">
                         <i class="fa fa-handshake-o"></i>
-                        <span> Clientes </span>
+                        <span th:text="#{menu.clientes}"></span>
                     </a>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-desktop"></i>
-                        <span> Equipos </span>
+                        <span th:text="#{menu.equipos}"></span>
                     </a>
                     <ul class="sub">
-                        <li><a href="/equipos/registrar"> Agregar </a></li>
-                        <li><a href="/equipos/catalogo"> Catálogo </a></li>
+                        <li><a th:text="#{menu.equipos.agregar}" href="/equipos/registrar"></a></li>
+                        <li><a th:text="#{menu.equipos.catalogo}" href="/equipos/catalogo"></a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-percent"></i>
-                        <span> Alquileres </span>
+                        <span th:text="#{menu.alquileres}"> Alquileres </span>
                     </a>
                     <ul class="sub">
-                        <li><a href="/alquiler/registrar"> Crear Factura </a></li>
-                        <li><a href="/alquiler/listasFacturas"> Lista de Facturas </a></li>
-                        <li><a href="/alquiler/equiposRentados"> Equipos en Alquiler</a></li>
+                        <li><a th:text="#{menu.alquileres.crear-factura}" href="/alquiler/registrar"></a></li>
+                        <li><a th:text="#{menu.alquileres.lista-facturas}" href="/alquiler/listasFacturas"> Lista de Facturas </a></li>
+                        <li><a th:text="#{menu.alquileres.equipos-alquiler}" href="/alquiler/equiposRentados"> Equipos en Alquiler</a></li>
                     </ul>
                 </li>
 
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class=" fa fa-bar-chart-o"></i>
-                        <span>Gráficos</span>
+                        <span th:text="#{menu.graficos}"></span>
                     </a>
                     <ul class="sub">
-                        <li><a href="morris.html">Promedios por Familia</a></li>
+                        <li><a th:text="#{menu.graficos.promedios-familia}" href="morris.html"></a></li>
                         <li><a href="chartjs.html">Promedios por Familia</a></li>
                     </ul>
                 </li>
@@ -133,52 +132,41 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper site-min-height">
-            <h3><i class="fa fa-angle-right"></i> Alquiler</h3>
+            <h3><i class="fa fa-angle-right"></i> Catálogo </h3>
             <div class="row mt">
                 <div class="col-lg-12">
 
-                    <!-- Contenido -->
-                    <div class="form-panel">
-                        <h4 class="mb"><i class="fa fa-angle-right"></i> Registrar Factura</h4>
-                        <form action="/registrarFactura" th:object="${factura}" class="form-horizontal" method="post">
-                            <input th:if="${_csrf} != null" type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                            <div class="form-group">
-                                <label class="col-sm-2 col-sm-2 control-label">Cliente a Facturar</label>
-                                <div class="col-sm-10 tab-div">
-                                    <select class="js-example-basic-single form-control" id="cliente" name="cliente" required>
-                                        <option>Seleccione al cliente a facturar...</option>
-                                        <th:block th:each="cliente:${listaClientes}">
-                                            <option th:value="${cliente.idCliente}"
-                                                    th:text="${cliente.nombreCompleto()}">
-                                            </option>
-                                        </th:block>
-                                    </select>
+
+
+                    <th:block th:each="equipo: ${listaEquipos}">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="custom-box">
+                                <div class="servicetitle">
+                                    <h4 th:text="${equipo.idEquipo}+' - '+${equipo.nombre}"></h4>
+                                    <hr>
                                 </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label col-md-3">Start with years viewMode</label>
-                                <div class="col-md-3 col-xs-11">
-                                    <div data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="01-01-2014" class="input-append date dpYears">
-                                        <input type="text" readonly="" value="10-10-2019" size="16" class="form-control" name="fechaEntregaEquipo" tid="fechaEntregaEquipo">
-                                        <span class="input-group-btn add-on">
-                                            <button class="btn btn-theme" type="button"><i class="fa fa-calendar"></i></button>
-                                        </span>
-                                    </div>
+                                <div class="icn-main-container">
+                                    <span class="icn-container">
+                                        <img th:src="@{'../images/' + ${equipo.rutaImagen}}" th:class="img-circle" width="80" />
+                                    </span>
                                 </div>
+                                <ul class="pricing">
+                                    <li th:text="'Familia: ' + ${equipo.subfamilia.familia.nombre}"></li>
+                                    <li th:text="'Sub-Familia: ' + ${equipo.subfamilia.nombre}"></li>
+                                    <li th:text="'Cantidad: ' + ${equipo.inventario}"></li>
+                                </ul>
+                                <a class="btn btn-theme">Modificar</a>
+                                <a class="btn btn-theme btn-borrar">Borrar</a>
                             </div>
+                            <!-- end custombox -->
+                        </div>
+                    </th:block>
+                    <!-- end col-4 -->
 
 
 
-                            <div class="form-group">
-                                <div class="col-sm-submit">
-                                    <button type="submit" name="submit-btn" class="btn btn-success">Continuar</button>
-                                </div>
-                            </div>
 
-                        </form>
-                    </div>
-                    <!-- Contenido - Fin -->
+
                 </div>
             </div>
         </section>
@@ -216,21 +204,9 @@
 <script class="include" type="text/javascript" src="../lib/jquery.dcjqaccordion.2.7.js"></script>
 <script src="../lib/jquery.scrollTo.min.js"></script>
 <script src="../lib/jquery.nicescroll.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <!--common script for all pages-->
 <script src="../lib/common-scripts.js"></script>
-<script type="text/javascript" src="../lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="../lib/bootstrap-daterangepicker/date.js"></script>
-<script type="text/javascript" src="../lib/bootstrap-daterangepicker/daterangepicker.js"></script>
-<script type="text/javascript" src="../lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
-<script type="text/javascript" src="../lib/bootstrap-daterangepicker/moment.min.js"></script>
-<script src="../lib/advanced-form-components.js"></script>
 <!--script for this page-->
-<script>
-    $(document).ready(function() {
-        $('.js-example-basic-single').select2();
-    });
-</script>
 
 </body>
 
