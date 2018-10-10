@@ -56,7 +56,12 @@ public class AlquilerController {
             factura.setFechaEntregaEquipo(fechaEntrega);
         } catch (ParseException e) {
             System.out.println("Error al almacenar la fecha");
-            factura.setFechaEntregaEquipo(new Date());
+            String aux = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+            try {
+                factura.setFechaEntregaEquipo(new SimpleDateFormat("dd-MM-yyyy").parse(aux));
+            } catch (ParseException e1) {
+                System.out.println("Error al almacenar la fecha actual");
+            }
         }
 
         repositorioFactura.save(factura);
@@ -111,7 +116,12 @@ public class AlquilerController {
             alquiler.setFechaAlquiler(fechaEntrega);
         } catch (ParseException e) {
             System.out.println("Error al almacenar la fecha");
-            alquiler.setFechaAlquiler(new Date());
+            String aux = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+            try {
+                alquiler.setFechaAlquiler(new SimpleDateFormat("dd-MM-yyyy").parse(aux));
+            } catch (ParseException e1) {
+                System.out.println("Error al almacenar la fecha actual");
+            }
         }
 
         try {
@@ -119,7 +129,12 @@ public class AlquilerController {
             alquiler.setFechaPromesaEntrega(fechaEntrega);
         } catch (ParseException e) {
             System.out.println("Error al almacenar la fecha");
-            alquiler.setFechaPromesaEntrega(new Date());
+            String aux = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+            try {
+                alquiler.setFechaPromesaEntrega(new SimpleDateFormat("dd-MM-yyyy").parse(aux));
+            } catch (ParseException e1) {
+                System.out.println("Error al almacenar la fecha actual");
+            }
         }
 
         repositorioAlquiler.save(alquiler);
