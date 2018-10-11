@@ -1,23 +1,23 @@
 package com.pucmm.sistemaalquilerspringboot.sistemaalquiler.encapsulacion;
 
 public class SubFamiliaEncapsulacion {
-    private String familia;
+    private String subfamilia;
     private double promedio;
 
     public SubFamiliaEncapsulacion() {
     }
 
-    public SubFamiliaEncapsulacion(String familia, double promedio) {
-        this.familia = familia;
+    public SubFamiliaEncapsulacion(String subfamilia, double promedio) {
+        this.subfamilia = subfamilia;
         this.promedio = promedio;
     }
 
-    public String getFamilia() {
-        return familia;
+    public String getSubfamilia() {
+        return subfamilia;
     }
 
-    public void setFamilia(String familia) {
-        this.familia = familia;
+    public void setSubfamilia(String subfamilia) {
+        this.subfamilia = subfamilia;
     }
 
     public double getPromedio() {
