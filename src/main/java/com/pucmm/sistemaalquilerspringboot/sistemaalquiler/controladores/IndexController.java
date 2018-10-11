@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class IndexController {
 
@@ -20,11 +22,13 @@ public class IndexController {
     }
 
     @RequestMapping("/index")
-    public ModelAndView getIndexView(Authentication authentication){
+    public ModelAndView getIndexView(Authentication authentication, HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView("base");
         modelAndView.addObject("username", authentication.getName());
+        modelAndView.addObject("puerto", ""+request.getLocalPort());
         return modelAndView;
     }
+
 
 
 
