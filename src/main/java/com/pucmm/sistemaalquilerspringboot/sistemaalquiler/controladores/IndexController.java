@@ -1,6 +1,8 @@
 package com.pucmm.sistemaalquilerspringboot.sistemaalquiler.controladores;
 
 import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.servicios.serviciosEntidades.seguridad.ServiciosUsuario;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,9 +20,9 @@ public class IndexController {
     }
 
     @RequestMapping("/index")
-    public ModelAndView getIndexView(){
+    public ModelAndView getIndexView(Authentication authentication){
         ModelAndView modelAndView = new ModelAndView("base");
-        modelAndView.addObject("username", "admin");
+        modelAndView.addObject("username", authentication.getName());
         return modelAndView;
     }
 

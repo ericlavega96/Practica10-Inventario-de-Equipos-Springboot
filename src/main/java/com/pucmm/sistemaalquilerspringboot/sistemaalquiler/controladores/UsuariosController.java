@@ -7,6 +7,7 @@ import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.repositorios.Reposito
 import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.repositorios.seguridad.RepositorioUsuario;
 import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.servicios.serviciosEntidades.seguridad.ServiciosUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,7 +34,8 @@ public class UsuariosController {
     private RepositorioCliente repositorioCliente;
 
     @RequestMapping(value = "/usuarios",method = RequestMethod.GET)
-    public String getClientesView(Model model){
+    public String getClientesView(Model model, Authentication authentication){
+        model.addAttribute("username",authentication.getName());
         model.addAttribute("usuarios",repositorioUsuario.findAll());
         return "usuarios";
     }

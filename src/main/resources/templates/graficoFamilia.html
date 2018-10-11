@@ -174,24 +174,27 @@
     request.onload = function() {
         if (request.status >= 200 && request.status < 400) {
             var data = JSON.parse(request.responseText);
-            new Morris.Bar({
-                // ID of the element in which to draw the chart.
-                element: 'myfirstchart',
-                // Chart data records -- each entry in this array corresponds to a point on
-                // the chart.
-                data: data ,
-                // The name of the data record attribute that contains x-values.
-                xkey: 'familia',
-                // A list of names of data record attributes that contain y-values.
-                ykeys: ['promedio'],
-                // Labels for the ykeys -- will be displayed when you hover over the
-                // chart.
-                labels: ['Promedio'],
+            console.log(data);
+            if(data === "[]"){
+                new Morris.Bar({
+                    // ID of the element in which to draw the chart.
+                    element: 'myfirstchart',
+                    // Chart data records -- each entry in this array corresponds to a point on
+                    // the chart.
+                    data: data ,
+                    // The name of the data record attribute that contains x-values.
+                    xkey: 'familia',
+                    // A list of names of data record attributes that contain y-values.
+                    ykeys: ['promedio'],
+                    // Labels for the ykeys -- will be displayed when you hover over the
+                    // chart.
+                    labels: ['Promedio'],
 
-                barRatio: 0.4,
-                hideHover: 'auto',
-                barColors: ['#ac92ec']
-            });
+                    barRatio: 0.4,
+                    hideHover: 'auto',
+                    barColors: ['#ac92ec']
+                });
+            }
             // Success!
         } else {
             // We reached our target server, but it returned an error

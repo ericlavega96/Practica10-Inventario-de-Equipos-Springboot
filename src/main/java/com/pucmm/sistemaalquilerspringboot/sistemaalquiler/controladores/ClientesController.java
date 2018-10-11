@@ -5,6 +5,7 @@ import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.repositorios.Reposito
 import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.servicios.GestorImagenesServicio;
 import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.servicios.serviciosEntidades.ServiciosPais;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,7 +28,8 @@ public class ClientesController {
     GestorImagenesServicio gestorImagenesServicio;
 
     @RequestMapping(value = "/clientes",method = RequestMethod.GET)
-    public String getClientesView(Model model){
+    public String getClientesView(Model model, Authentication authentication){
+        model.addAttribute("username",authentication.getName());
         model.addAttribute("paises",serviciosPais.getPaises());
         model.addAttribute("clientes",repositorioCliente.findAll());
         return "clientes";
