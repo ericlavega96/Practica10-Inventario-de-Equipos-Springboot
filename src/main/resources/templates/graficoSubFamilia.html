@@ -102,8 +102,8 @@
                         <span th:text="#{menu.graficos}"></span>
                     </a>
                     <ul class="sub">
-                        <li><a th:text="#{menu.graficos.promedios-familia}" href="morris.html"></a></li>
-                        <li><a href="chartjs.html">Promedios por Familia</a></li>
+                        <li><a th:text="#{menu.graficos.promedios-familia}" href="/graficos/familias"></a></li>
+                        <li><a href="/graficos/subfamilias">Promedios por Familia</a></li>
                     </ul>
                 </li>
             </ul>
@@ -120,8 +120,9 @@
             <h3><i class="fa fa-angle-right"></i> Promedios por Sub-Familia</h3>
             <div class="row mt">
                 <div class="col-lg-12">
+                    <div id="grafico-subfamilias" style="height: 250px;">
 
-                    <div id="myfirstchart" style="height: 250px;"></div>
+                    </div>
 
 
                 </div>
@@ -168,24 +169,47 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 
 <script>
-    new Morris.Bar({
-        // ID of the element in which to draw the chart.
-        element: 'myfirstchart',
-        // Chart data records -- each entry in this array corresponds to a point on
-        // the chart.
-        data: "http://localhost:8080/rest/subfamilias",
-        // The name of the data record attribute that contains x-values.
-        xkey: 'subfamilia',
-        // A list of names of data record attributes that contain y-values.
-        ykeys: ['promedio'],
-        // Labels for the ykeys -- will be displayed when you hover over the
-        // chart.
-        labels: ['Promedio'],
 
-        barRatio: 0.4,
-        hideHover: 'auto',
-        barColors: ['#ac92ec']
-    });
+</script>
+<script>
+    var request = new XMLHttpRequest();
+    request.open('GET', "http://localhost:8080/rest/subfamilias", true);
+
+    request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+            var data = JSON.parse(request.responseText);
+            new Morris.Bar({
+                // ID of the element in which to draw the chart.
+                element: 'grafico-subfamilias',
+                // Chart data records -- each entry in this array corresponds to a point on
+                // the chart.
+                data: data,
+                // The name of the data record attribute that contains x-values.
+                xkey: 'subfamilia',
+                // A list of names of data record attributes that contain y-values.
+                ykeys: ['promedio'],
+                // Labels for the ykeys -- will be displayed when you hover over the
+                // chart.
+                labels: ['Promedio'],
+
+                barRatio: 0.4,
+                hideHover: 'auto',
+                barColors: ['#fdfa72']
+            });
+            // Success!
+        } else {
+            // We reached our target server, but it returned an error
+            console.log("Hubo un error tras recibir el JSON");
+
+        }
+    };
+
+    request.onerror = function() {
+        // There was a connection error of some sort
+        console.log("Hubo un error de conexion");
+    };
+
+    request.send();
 </script>
 
 <!--script for this page-->

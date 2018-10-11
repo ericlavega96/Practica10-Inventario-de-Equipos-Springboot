@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -73,14 +74,20 @@ public class ServiciosUsuario implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username){
         Usuario usuario = repositorioUsuario.findByUsername(username);
-
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        for (Rol rol : usuario.getRoles()) {
-            grantedAuthorities.add(new SimpleGrantedAuthority(rol.getRol()));
+        UserDetails userDetails = null;
+        try {
+            for (Rol rol : usuario.getRoles()) {
+                grantedAuthorities.add(new SimpleGrantedAuthority(rol.getRol()));
+            }
+            userDetails = new org.springframework.security.core.userdetails.User(usuario.getUsername(), usuario.getPassword(),!usuario.isDeleted(),true, true, true, grantedAuthorities);
+
+        }catch (NullPointerException e){
+            System.out.println("No existe un usuario con el nombre de usuario introducido");
         }
 
-        return new org.springframework.security.core.userdetails.User(usuario.getUsername(), usuario.getPassword(),!usuario.isDeleted(),true, true, true, grantedAuthorities);
+        return userDetails;
     }
 }
