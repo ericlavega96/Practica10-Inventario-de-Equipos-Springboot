@@ -81,7 +81,7 @@ public class AlquilerController {
     @RequestMapping(value = "/alquiler/listasFacturas",method = RequestMethod.GET)
     public String getFacturaListas(Model model){
         model.addAttribute("facturas",repositorioFactura.findAll());
-        return "blank";
+        return "listaFacturas";
     }
 
     @RequestMapping(value = "/alquiler/equiposRentados",method = RequestMethod.GET)

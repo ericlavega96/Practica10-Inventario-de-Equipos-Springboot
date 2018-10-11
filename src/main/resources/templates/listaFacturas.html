@@ -8,7 +8,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title th:text="'Factura - Tabla #'+${factura.idFactura}"></title>
+    <title th:text="'Lista de Facturas'"></title>
 
     <!-- Favicons -->
     <link href="/../img/favicon.png" rel="icon">
@@ -169,56 +169,63 @@
                             <div class="content-panel">
                                 <div class="form-panel">
                                     <th:block th:each="factura:${facturas}">
-                                    <h4><i th:text="'Factura #'+${factura.idFactura}" class="fa fa-angle-right"></i></h4>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">ID:</label><p th:text="${factura.idFactura}"></p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Cliente:</label><p th:text="${factura.clienteCompleto()}"></p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Fecha de facturación:</label><p th:text="${factura.fechaString()}"></p>
-                                    </div>
+                                        <h4><i th:text="'Factura #'+${factura.idFactura}" class="fa fa-angle-right"></i></h4>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">ID:</label><p th:text="${factura.idFactura}"></p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">Cliente:</label><p th:text="${factura.clienteCompleto()}"></p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">Fecha de facturación:</label><p th:text="${factura.fechaString()}"></p>
+                                        </div>
 
-                                    <table class="table table-striped table-advance table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th><i class="fa fa-key"></i> ID </th>
-                                            <th><i class="fa fa-user"></i><span th:text="Equipo" /></th>
-                                            <th> Fecha de Alquiler </th>
-                                            <th> Fecha de Entrega </th>
-                                            <th> Costo Diario Unitario por Alquiler </th>
-                                            <th> Cantidad Alquilada</th>
-
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <th:block th:each="alquiler:${alquileres}">
+                                        <table class="table table-striped table-advance table-hover">
+                                            <thead>
                                             <tr>
-                                                <td>
-                                                    <span class="badge bg-info" th:text="${alquiler.idAlquiler}"></span>
-                                                </td>
-                                                <td th:text="${alquiler.equipoString()}"></td>
-                                                <td th:text="${alquiler.fechaAlquilerString()}"></td>
-                                                <td th:text="${alquiler.fechaEntregaString()}"></td>
-                                                <td th:text="${alquiler.costoDiarioUnitario}"></td>
-                                                <td th:text="${alquiler.cantidad}"></td>
-                                                <td>
-                                                    <a class="foto label label-info label-mini">
-                                                        <label th:text="'Ver Foto'"></label>
-                                                        <span>
-                                                            <img th:src="@{'/images/' + ${alquiler.equipo.rutaImagen}}" />
-                                                        </span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" th:attr="data-target='#editar-cliente-' + ${alquiler.idAlquiler}"><i class="fa fa-pencil"></i></button>
-                                                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o " data-toggle="modal"></i></button>
-                                                </td>
+                                                <th><i class="fa fa-key"></i> ID </th>
+                                                <th><i class="fa fa-user"></i><span th:text="Equipo" /></th>
+                                                <th> Fecha de Alquiler </th>
+                                                <th> Fecha de Entrega </th>
+                                                <th> Costo Diario Unitario por Alquiler </th>
+                                                <th> Cantidad Alquilada</th>
+
                                             </tr>
-                                        </th:block>
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                            <th:block th:each="alquiler:${factura.alquileres}">
+                                                <tr>
+                                                    <td>
+                                                        <span class="badge bg-info" th:text="${alquiler.idAlquiler}"></span>
+                                                    </td>
+                                                    <td th:text="${alquiler.equipoString()}"></td>
+                                                    <td th:text="${alquiler.fechaAlquilerString()}"></td>
+                                                    <td th:text="${alquiler.fechaEntregaString()}"></td>
+                                                    <td th:text="${alquiler.costoDiarioUnitario}"></td>
+                                                    <td th:text="${alquiler.cantidad}"></td>
+                                                    <td>
+                                                        <a class="foto label label-info label-mini">
+                                                            <label th:text="'Ver Foto'"></label>
+                                                            <span>
+                                                                <img th:src="@{'/images/' + ${alquiler.equipo.rutaImagen}}" />
+                                                            </span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" th:attr="data-target='#editar-cliente-' + ${alquiler.idAlquiler}"><i class="fa fa-pencil"></i></button>
+                                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o " data-toggle="modal"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </th:block>
+                                            </tbody>
+                                        </table>
+                                        <div class="form-group">
+                                            <div class="col-sm-submit">
+                                                <a th:href="'/alquiler/tablaFactura/alquilerParametros/'+${factura.idFactura}">
+                                                    <button type="submit" name="submit-btn" class="btn btn-success">  Añadir Nuevo Alquiler </button>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </th:block>
                                 </div>
                                 <!-- /content-panel -->

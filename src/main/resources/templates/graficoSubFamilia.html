@@ -8,7 +8,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title></title>
+    <title>Gráficos Sub-Familia</title>
 
     <!-- Favicons -->
     <link href="../img/favicon.png" rel="icon">
@@ -21,6 +21,8 @@
     <!-- Custom styles for this template -->
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/style-responsive.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 
     <!-- =======================================================
       Template Name: Dashio
@@ -100,8 +102,8 @@
                         <span th:text="#{menu.graficos}"></span>
                     </a>
                     <ul class="sub">
-                        <li><a th:text="#{menu.graficos.promedios-familia}" href="/graficos/familias"></a></li>
-                        <li><a href="/graficos/subfamilias">Promedios por Familia</a></li>
+                        <li><a th:text="#{menu.graficos.promedios-familia}" href="morris.html"></a></li>
+                        <li><a href="chartjs.html">Promedios por Familia</a></li>
                     </ul>
                 </li>
             </ul>
@@ -115,10 +117,13 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper site-min-height">
-            <h3><i class="fa fa-angle-right"></i> Blank Page</h3>
+            <h3><i class="fa fa-angle-right"></i> Promedios por Sub-Familia</h3>
             <div class="row mt">
                 <div class="col-lg-12">
-                    <p>Place your content here.</p>
+
+                    <div id="myfirstchart" style="height: 250px;"></div>
+
+
                 </div>
             </div>
         </section>
@@ -158,6 +163,31 @@
 <script src="../lib/jquery.nicescroll.js" type="text/javascript"></script>
 <!--common script for all pages-->
 <script src="../lib/common-scripts.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
+<script>
+    new Morris.Bar({
+        // ID of the element in which to draw the chart.
+        element: 'myfirstchart',
+        // Chart data records -- each entry in this array corresponds to a point on
+        // the chart.
+        data: "http://localhost:8080/rest/subfamilias",
+        // The name of the data record attribute that contains x-values.
+        xkey: 'subfamilia',
+        // A list of names of data record attributes that contain y-values.
+        ykeys: ['promedio'],
+        // Labels for the ykeys -- will be displayed when you hover over the
+        // chart.
+        labels: ['Promedio'],
+
+        barRatio: 0.4,
+        hideHover: 'auto',
+        barColors: ['#ac92ec']
+    });
+</script>
+
 <!--script for this page-->
 
 </body>
