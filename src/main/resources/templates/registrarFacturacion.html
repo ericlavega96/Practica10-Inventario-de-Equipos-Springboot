@@ -76,50 +76,50 @@
         <div id="sidebar" class="nav-collapse ">
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
-                <p class="centered"><a href="profile.html"><img src="../img/user-icon.png" class="img-circle" width="80"></a></p>
-                <h5 th:text="${username}" class="centered">Sam Soffes</h5>
+                <p class="centered"><a href="/index"><img src="../img/user-icon.png" class="img-circle" width="80"></a></p>
+                <h5 th:text="${username}" class="centered"></h5>
                 <li class="mt">
-                    <a href="index.html">
+                    <a href="/usuarios">
                         <i class="fa fa-users"></i>
-                        <span> Usuarios </span>
+                        <span th:text="#{menu.usuarios}"></span>
                     </a>
                 </li>
                 <li>
                     <a href="/clientes">
                         <i class="fa fa-handshake-o"></i>
-                        <span> Clientes </span>
+                        <span th:text="#{menu.clientes}"></span>
                     </a>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-desktop"></i>
-                        <span> Equipos </span>
+                        <span th:text="#{menu.equipos}"></span>
                     </a>
                     <ul class="sub">
-                        <li><a href="/equipos/registrar"> Agregar </a></li>
-                        <li><a href="/equipos/catalogo"> Catálogo </a></li>
+                        <li><a th:text="#{menu.equipos.agregar}" href="/equipos/registrar"></a></li>
+                        <li><a th:text="#{menu.equipos.catalogo}" href="/equipos/catalogo"></a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-percent"></i>
-                        <span> Alquileres </span>
+                        <span th:text="#{menu.alquileres}"> Alquileres </span>
                     </a>
                     <ul class="sub">
-                        <li><a href="/alquiler/registrar"> Crear Factura </a></li>
-                        <li><a href="/alquiler/listasFacturas"> Lista de Facturas </a></li>
-                        <li><a href="/alquiler/equiposRentados"> Equipos en Alquiler</a></li>
+                        <li><a th:text="#{menu.alquileres.crear-factura}" href="/alquiler/registrar"></a></li>
+                        <li><a th:text="#{menu.alquileres.lista-facturas}" href="/alquiler/listasFacturas"> Lista de Facturas </a></li>
+                        <li><a th:text="#{menu.alquileres.equipos-alquiler}" href="/alquiler/equiposRentados"> Equipos en Alquiler</a></li>
                     </ul>
                 </li>
 
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class=" fa fa-bar-chart-o"></i>
-                        <span>Gráficos</span>
+                        <span th:text="#{menu.graficos}"></span>
                     </a>
                     <ul class="sub">
-                        <li><a href="morris.html">Promedios por Familia</a></li>
-                        <li><a href="chartjs.html">Promedios por Familia</a></li>
+                        <li><a th:text="#{menu.graficos.promedios-familia}" href="/graficos/familias"></a></li>
+                        <li><a th:text="#{menu.graficos.promedios-subfamilia}" href="/graficos/subfamilias"></a></li>
                     </ul>
                 </li>
             </ul>

@@ -1,6 +1,7 @@
 package com.pucmm.sistemaalquilerspringboot.sistemaalquiler.controladores;
 
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,8 @@ import java.io.IOException;
 public class GraficosControlller {
 
     @RequestMapping(value = "/graficos/familias", method = RequestMethod.GET)
-    public String getFamiliaGrafico(Model model)  throws IOException {
+    public String getFamiliaGrafico(Model model, Authentication authentication)  throws IOException {
+        model.addAttribute("username",authentication.getName());
         System.out.println("Entró a gráficos de promedio de familias.");
         return "graficoFamilia";
     }

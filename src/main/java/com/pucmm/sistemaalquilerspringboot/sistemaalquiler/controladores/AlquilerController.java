@@ -9,6 +9,7 @@ import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.repositorios.Reposito
 import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.repositorios.RepositorioFactura;
 import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.servicios.serviciosEntidades.ServiciosAlquiler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,10 +39,11 @@ public class AlquilerController {
     RepositorioAlquiler repositorioAlquiler;
 
     @RequestMapping(value = "/alquiler/registrar",method = RequestMethod.GET)
-    public String getFacturaView(Model model){
+    public String getFacturaView(Model model, Authentication authentication){
         System.out.println("Entro a alquiler");
         for(Cliente cliente:repositorioCliente.findAll())
             System.out.println("Nombre: " + cliente.getNombres() +" "+ cliente.getApellidos());
+        model.addAttribute("username",authentication.getName());
         model.addAttribute("listaClientes",repositorioCliente.findAll());
         return "registrarFacturacion";
     }
@@ -79,13 +81,15 @@ public class AlquilerController {
     }
 
     @RequestMapping(value = "/alquiler/listasFacturas",method = RequestMethod.GET)
-    public String getFacturaListas(Model model){
+    public String getFacturaListas(Model model,Authentication authentication){
+        model.addAttribute("username",authentication.getName());
         model.addAttribute("facturas",repositorioFactura.findAll());
         return "listaFacturas";
     }
 
     @RequestMapping(value = "/alquiler/equiposRentados",method = RequestMethod.GET)
-    public String getEquiposAlquilados(Model model){
+    public String getEquiposAlquilados(Model model,Authentication authentication){
+        model.addAttribute("username",authentication.getName());
         model.addAttribute("alquileres",repositorioAlquiler.findAll());
         return "listaAlquileres";
     }

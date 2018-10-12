@@ -8,7 +8,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title></title>
+    <title>HOME</title>
 
     <!-- Favicons -->
     <link href="../img/favicon.png" rel="icon">
@@ -28,6 +28,11 @@
       Author: TemplateMag.com
       License: https://templatemag.com/license/
     ======================================================= -->
+  <style>
+      .texto-label{
+          font-size: 20px;
+      }
+  </style>
 </head>
 
 <body>
@@ -101,7 +106,7 @@
                     </a>
                     <ul class="sub">
                         <li><a th:text="#{menu.graficos.promedios-familia}" href="/graficos/familias"></a></li>
-                        <li><a href="/graficos/subfamilias">Promedios por Familia</a></li>
+                        <li><a th:text="#{menu.graficos.promedios-subfamilia}" href="/graficos/subfamilias"></a></li>
                     </ul>
                 </li>
             </ul>
@@ -115,10 +120,15 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper site-min-height">
-            <h3><i class="fa fa-angle-right"></i> Blank Page</h3>
+            <h3><i class="fa fa-angle-right"></i> HOME </h3>
             <div class="row mt">
                 <div class="col-lg-12">
-                    <p>Place your content here.</p>
+
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label texto-label">Puerto:</label><p th:text="${puerto}" class="texto-label"></p>
+                    </div>
+
                 </div>
             </div>
         </section>

@@ -75,7 +75,7 @@
         <div id="sidebar" class="nav-collapse ">
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
-                <p class="centered"><a href="/index"><img src="/../img/user-icon.png" class="img-circle" width="80"></a></p>
+                <p class="centered"><a href="/index"><img src="../img/user-icon.png" class="img-circle" width="80"></a></p>
                 <h5 th:text="${username}" class="centered"></h5>
                 <li class="mt">
                     <a href="/usuarios">
@@ -117,8 +117,8 @@
                         <span th:text="#{menu.graficos}"></span>
                     </a>
                     <ul class="sub">
-                        <li><a th:text="#{menu.graficos.promedios-familia}" href="morris.html"></a></li>
-                        <li><a href="chartjs.html">Promedios por Familia</a></li>
+                        <li><a th:text="#{menu.graficos.promedios-familia}" href="/graficos/familias"></a></li>
+                        <li><a th:text="#{menu.graficos.promedios-subfamilia}" href="/graficos/subfamilias"></a></li>
                     </ul>
                 </li>
             </ul>

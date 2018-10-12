@@ -8,6 +8,7 @@ import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.repositorios.Reposito
 import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.servicios.GestorImagenesServicio;
 import com.pucmm.sistemaalquilerspringboot.sistemaalquiler.servicios.serviciosEntidades.ServiciosFamilia;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,8 +35,9 @@ public class EquipoController {
     GestorImagenesServicio gestorImagenesServicio;
 
     @RequestMapping(value = "/equipos/registrar", method = RequestMethod.GET)
-    public String getRegistrarView(Model model)  throws IOException {
+    public String getRegistrarView(Model model, Authentication authentication)  throws IOException {
         model.addAttribute("listaFamilias", serviciosFamilia.findAll());
+        model.addAttribute("username",authentication.getName());
         System.out.println("Entró a registrar equipos");
         for(Familia f:serviciosFamilia.findAll()) {
             System.out.println("Nombre: " + f.getNombre() + " Inglés:" + f.getNombre() + " Subfamilias:");
@@ -65,8 +67,9 @@ public class EquipoController {
     }
 
     @RequestMapping(value = "/equipos/catalogo", method = RequestMethod.GET)
-    public String getTableView(Model model)  throws IOException {
+    public String getTableView(Model model,Authentication authentication)  throws IOException {
         model.addAttribute("listaEquipos", repositorioEquipo.findAll());
+        model.addAttribute("username",authentication.getName());
         System.out.println("Entró a ver equipos");
         return "catalogoEquipos";
     }

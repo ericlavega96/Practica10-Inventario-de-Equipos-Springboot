@@ -110,7 +110,7 @@
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a href="javascript:;">
+                    <a>
                         <i class="fa fa-desktop"></i>
                         <span th:text="#{menu.equipos}"></span>
                     </a>
@@ -120,7 +120,7 @@
                     </ul>
                 </li>
                 <li class="sub-menu">
-                    <a href="javascript:;">
+                    <a>
                         <i class="fa fa-percent"></i>
                         <span th:text="#{menu.alquileres}"> Alquileres </span>
                     </a>
@@ -132,13 +132,13 @@
                 </li>
 
                 <li class="sub-menu">
-                    <a href="javascript:;">
+                    <a>
                         <i class=" fa fa-bar-chart-o"></i>
                         <span th:text="#{menu.graficos}"></span>
                     </a>
                     <ul class="sub">
-                        <li><a th:text="#{menu.graficos.promedios-familia}" href="morris.html"></a></li>
-                        <li><a href="chartjs.html">Promedios por Familia</a></li>
+                        <li><a th:text="#{menu.graficos.promedios-familia}" href="/graficos/familias"></a></li>
+                        <li><a th:text="#{menu.graficos.promedios-subfamilia}" href="/graficos/subfamilias"></a></li>
                     </ul>
                 </li>
             </ul>

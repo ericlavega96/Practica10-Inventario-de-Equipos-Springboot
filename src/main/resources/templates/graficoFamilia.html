@@ -103,7 +103,7 @@
                     </a>
                     <ul class="sub">
                         <li><a th:text="#{menu.graficos.promedios-familia}" href="/graficos/familias"></a></li>
-                        <li><a href="/graficos/subfamilias">Promedios por Familia</a></li>
+                        <li><a th:text="#{menu.graficos.promedios-subfamilia}" href="/graficos/subfamilias"></a></li>
                     </ul>
                 </li>
             </ul>
@@ -170,7 +170,6 @@
 <script>
     var request = new XMLHttpRequest();
     request.open('GET', "http://localhost:8080/rest/familias", true);
-
     request.onload = function() {
         if (request.status >= 200 && request.status < 400) {
             var data = JSON.parse(request.responseText);
@@ -187,7 +186,6 @@
                 // Labels for the ykeys -- will be displayed when you hover over the
                 // chart.
                 labels: ['Promedio'],
-
                 barRatio: 0.4,
                 hideHover: 'auto',
                 barColors: ['#ac92ec']
@@ -196,17 +194,13 @@
         } else {
             // We reached our target server, but it returned an error
             console.log("Hubo un error tras recibir el JSON");
-
         }
     };
-
     request.onerror = function() {
         // There was a connection error of some sort
         console.log("Hubo un error de conexion");
     };
-
     request.send();
-
 </script>
 
 <!--script for this page-->
