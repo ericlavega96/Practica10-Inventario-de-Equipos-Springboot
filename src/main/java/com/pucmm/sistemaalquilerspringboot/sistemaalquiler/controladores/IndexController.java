@@ -21,10 +21,17 @@ public class IndexController {
         return new RedirectView("/login");
     }
 
-    @RequestMapping("/index")
+    /*@RequestMapping("/index")
     public ModelAndView getIndexView(Authentication authentication, HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView("base");
         modelAndView.addObject("username", authentication.getName());
+        modelAndView.addObject("puerto", ""+request.getLocalPort());
+        return modelAndView;
+    }*/
+
+    @RequestMapping("/index")
+    public ModelAndView getIndexView(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView("base");
         modelAndView.addObject("puerto", ""+request.getLocalPort());
         return modelAndView;
     }
