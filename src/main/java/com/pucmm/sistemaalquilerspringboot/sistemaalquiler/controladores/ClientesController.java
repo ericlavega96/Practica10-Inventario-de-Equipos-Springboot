@@ -28,8 +28,8 @@ public class ClientesController {
     GestorImagenesServicio gestorImagenesServicio;
 
     @RequestMapping(value = "/clientes",method = RequestMethod.GET)
-    public String getClientesView(Model model, Authentication authentication){
-        model.addAttribute("username",authentication.getName());
+    public String getClientesView(Model model/*, Authentication authentication*/){
+        //model.addAttribute("username",authentication.getName());
         model.addAttribute("paises",serviciosPais.getPaises());
         model.addAttribute("clientes",repositorioCliente.findAll());
         return "clientes";

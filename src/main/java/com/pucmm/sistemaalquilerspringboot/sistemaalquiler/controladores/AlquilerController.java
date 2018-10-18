@@ -39,11 +39,11 @@ public class AlquilerController {
     RepositorioAlquiler repositorioAlquiler;
 
     @RequestMapping(value = "/alquiler/registrar",method = RequestMethod.GET)
-    public String getFacturaView(Model model, Authentication authentication){
+    public String getFacturaView(Model model/*, Authentication authentication*/){
         System.out.println("Entro a alquiler");
         for(Cliente cliente:repositorioCliente.findAll())
             System.out.println("Nombre: " + cliente.getNombres() +" "+ cliente.getApellidos());
-        model.addAttribute("username",authentication.getName());
+        //model.addAttribute("username",authentication.getName());
         model.addAttribute("listaClientes",repositorioCliente.findAll());
         return "registrarFacturacion";
     }
@@ -81,15 +81,15 @@ public class AlquilerController {
     }
 
     @RequestMapping(value = "/alquiler/listasFacturas",method = RequestMethod.GET)
-    public String getFacturaListas(Model model,Authentication authentication){
-        model.addAttribute("username",authentication.getName());
+    public String getFacturaListas(Model model/*, Authentication authentication*/){
+        //model.addAttribute("username",authentication.getName());
         model.addAttribute("facturas",repositorioFactura.findAll());
         return "listaFacturas";
     }
 
     @RequestMapping(value = "/alquiler/equiposRentados",method = RequestMethod.GET)
-    public String getEquiposAlquilados(Model model,Authentication authentication){
-        model.addAttribute("username",authentication.getName());
+    public String getEquiposAlquilados(Model model/*, Authentication authentication*/){
+        //model.addAttribute("username",authentication.getName());
         model.addAttribute("alquileres",repositorioAlquiler.findAll());
         return "listaAlquileres";
     }

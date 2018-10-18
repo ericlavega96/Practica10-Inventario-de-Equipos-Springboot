@@ -13,8 +13,8 @@ import java.io.IOException;
 public class GraficosControlller {
 
     @RequestMapping(value = "/graficos/familias", method = RequestMethod.GET)
-    public String getFamiliaGrafico(Model model, Authentication authentication)  throws IOException {
-        model.addAttribute("username",authentication.getName());
+    public String getFamiliaGrafico(Model model/*, Authentication authentication*/)  throws IOException {
+        //model.addAttribute("username",authentication.getName());
         System.out.println("Entró a gráficos de promedio de familias.");
         return "graficoFamilia";
     }

@@ -34,8 +34,8 @@ public class UsuariosController {
     private RepositorioCliente repositorioCliente;
 
     @RequestMapping(value = "/usuarios",method = RequestMethod.GET)
-    public String getClientesView(Model model, Authentication authentication){
-        model.addAttribute("username",authentication.getName());
+    public String getClientesView(Model model/*, Authentication authentication*/){
+        //model.addAttribute("username",authentication.getName());
         model.addAttribute("usuarios",repositorioUsuario.findAll());
         return "usuarios";
     }
